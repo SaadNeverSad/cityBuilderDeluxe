@@ -1,65 +1,90 @@
-Deliverable #1
+# User stories et tests d'acceptance
 
-# User story
+## User story 1
 
-### UserStory 1
+**En tant que :** joueur  
+**Je veux :** pouvoir visualiser ma ville sur une carte en 2D  
+**Afin de :** gérer correctement ma ville  
 
-En tant que : joueur
+### Tests d'acceptance
 
-Je veux : pouvoir placer des batiments
+- Le jeu est en 2d isométrique
+- Un système de tuiles permet de positionner les différents bâtiments
 
-Afin de : les voir apparaitre sur l'ecran
+## User story 2
 
-test : Sur l'ecran de jeu, le joueur est capable de voir en temps reel ses batiments se placer quand il le demande
+**En tant que :** joueur  
+**Je veux :** ajouter différents bâtiments dans ma ville  
+**Afin de :** gérer correctement ma ville  
 
-### UserStory 2
+### Tests d'acceptance
 
-En tant que : joueur
+- L'utilisateur dispose d'un inventaire avec un nombre limité de bâtiments.
+- L'utilisateur ne peut pas poser un bâtiment sur une case déjà occupée.
+- Le curseur se transforme en signe interdit si le batiment ne peut pas être posé.
 
-Je veux : pouvoir voir mes points
+## User story 3
 
-Afin de : connaitre mon avancée
+**En tant que :** joueur  
+**Je veux :** pouvoir voir mon score et mes objectifs   
+**Afin de :** connaitre mon avancée
 
-test : sur l'ecran de jeu, le joueur est capable de voir ses points en temps reel, en particulier quand il place un batiment et que donc ses points augmente
+### Tests d'acceptance
 
-### UserStory 3
+- Le score ainsi que le score requis pour passer au prochain niveau (objectif) sont affichés en évidence en haut à gauche de l'interface graphique.
+- Le score est affiché en temps réel, en particulier quand un bâtiment est placé il augmente.
+- Une fois l'objectif atteint, un bâtiment de chaque type est ajouté à l'inventaire.
+- Le jeu se finit lorsque l'utilisateur appuie sur "end game" ou lorsqu'il ne peut plus poser de bâtiment (carte remplie ou inventaire vide)
 
-En tant que : joueur
+## User story 4
 
-Je veux : voir le nombre de chacun des batiments que je peut placer
+**En tant que :** joueur  
+**Je veux :** prévisualiser le score rapporté par chaque bâtiment  
+**Afin de :** connaitre mon futur score et élaborer des stratégies
 
-Afin de : voir si il peut placer un certains batiments
+### Tests d'acceptance
 
-Test : sur l'ecran de jeu, le joueur est capable de voir si il peut placer un batiment ou pas, et si ce n'est pas le cas, il est incapable d'essayer de le placer sur la map
+- Avec une action de glisser-déposer, il est possible de voir le score que va donner le bâtiment grâce à un nombre sur chaque case adjacente.
+- Le score est calculé ainsi (cases laissées vides pour les valeurs inconnues):
 
-### UserStory 4
-
-En tant que : joueur
-
-Je veux : voir ou est ce que je peut placer des batiments
-
-Afin de : ne pas faire n'importe quoi
-
-test : sur l'ecran de jeu, quand l'ecran bouge sa souris avec un batiment en main, le batiment change de case jusqu'a ce que le joueur clique sur le bouton pour le placer
-
-### UserStory 5
-
-En tant que : joueur 
-
-Je veux : pouvoir retourner en arriere
-
-Afin de : regler mes erreurs
-
-test : sur l'ecran de jeu, si le joueur clique sur le bouton fait pour retourner en arriere, la derniere action du joueur est effacer
+|nom du bâtiment|score|portée|arbres|maisons|cirque|éolienne|fontaine|eau|
+|---------------|-----|------|------|-------|------|--------|--------|---|
+|maisons        |6    |1     |+5    |-1     |+10   |        |+8      |   |
+|éoliennes      |15   |2     |-4    |-8     |      |        |        |+10|
+|cirque         |     |3     |      |+15    |-25   |        |        |   |
+|fontaine       |6    |1     |      |+8     |      |        |        |   |
 
 
-### UserStory 6
+## User story 5
 
-En tant que : joueur
+**En tant que :** joueur  
+**Je veux :** pouvoir retourner en arrière  
+**Afin de :** régler mes erreurs lorsque je me trompe  
 
-Je veux : pouvoir voir mes batiments
+### Tests d'acceptance
 
-Afin de : ne pas les placer les uns sur les autres
+- Boutons undo et redo présents dans l'interface qui permettent respectivement d'annuler et de remettre les derniers ajouts de bâtiments.
+- Ajouter un nouveau bâtiment efface la pile des redos.
 
-test : sur l'ecran de jeu; le joueur peut voir les batiments qui sont placés et est incapable d'en placer un nouveau sur ceux existant.
+## User story 6
 
+**En tant que :** joueur  
+**Je veux :** pouvoir jouer sur des cartes différentes  
+**Afin de :** diversifier le jeu 
+
+### Tests d'acceptance
+
+- Au lancement du jeu et après chaque fin de jeu, un menu permet de sélectionner la carte
+- Une option permet de jouer sur une carte aléatoire.
+
+## User story 7
+
+**En tant que :** joueur  
+**Je veux :** pouvoir me comparer aux autres  
+**Afin d' :** assouvir mon besoin de supériorité
+
+### Tests d'acceptance
+
+- Le tableau de scores montre les meilleurs scores.
+- Il est ouvrable à n'importe quel moment en cliquant sur un bouton en haut à droite de l'interface.
+- Un champ de texte me permet de choisir le nom qui sera affiché sur le tableau de score.
