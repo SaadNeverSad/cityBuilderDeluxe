@@ -2,18 +2,10 @@
   <ng-container *ngFor="let y of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
     <ng-container *ngFor="let x of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
       <img
-        *ngIf="(y % 2 && x % 2) || (!(y % 2) && !(x % 2))"
         class="tile"
         [attr.data-x]="x"
         [attr.data-y]="y"
-        src="assets/tree.svg"
-      />
-      <img
-        *ngIf="(!(y % 2) && x % 2) || (y % 2 && !(x % 2))"
-        class="tile"
-        [attr.data-x]="x"
-        [attr.data-y]="y"
-        src="assets/circus.svg"
+        [src]="gameService.getTiles()[x][y].src"
       />
     </ng-container>
   </ng-container>
