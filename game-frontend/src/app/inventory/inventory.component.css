@@ -1,0 +1,30 @@
+.inventory {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}
+
+.block-container {
+  position: relative;
+  margin: 0 10px;
+  display: inline-block;
+  height: 58px;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 0 1em #ccc;
+}
+
+.badge {
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #498bd8;
+  color: #fff;
+  line-height: 24px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9em;
+}
