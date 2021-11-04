@@ -6,6 +6,9 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import game.resource.GameResource;
+import game.resource.MapResource;
+
 public final class Main {
 	private Main() {
 		super();
@@ -18,7 +21,8 @@ public final class Main {
 	 */
 	public static void startServer(final String httpAddress) {
 		final ResourceConfig rc = new ResourceConfig() // GameResource.class)
-			.register(JacksonFeature.class);
+			.register(JacksonFeature.class)
+			.register(MapResource.class);
 				// requires to inject a GameData into your GameResource
 //			.register(new AbstractBinder() {
 //				@Override
@@ -37,7 +41,8 @@ public final class Main {
 	 * In such cases the swagger UI is available http://localhost:4444/swag/index.html (localhost or 0.0.0.0)
 	 */
 	public static void main(final String[] args) throws InterruptedException {
-		final String httpAddress = args[0];
+		// final String httpAddress = args[0];
+		final String httpAddress = "http://localhost:4444/";
 		startServer(httpAddress);
 		Thread.currentThread().join();
 	}

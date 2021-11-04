@@ -25,7 +25,8 @@ public class GameResource {
 
 	@GET
 	@Path("foo/bar")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public void foobar() {
+		System.out.println("it works");
 	}
 }
