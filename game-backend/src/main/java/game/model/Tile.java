@@ -28,7 +28,7 @@ public class Tile {
                 break;
 
             default:
-                throw new UnknownTileException();
+                throw new UnknownTileException(kind);
         }
 
         this.kind = kind;
