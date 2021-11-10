@@ -8,6 +8,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import game.resource.GameResource;
 import game.resource.MapResource;
+import game.resource.ReplayResource;
 
 public final class Main {
 	private Main() {
@@ -22,7 +23,8 @@ public final class Main {
 	public static void startServer(final String httpAddress) {
 		final ResourceConfig rc = new ResourceConfig() // GameResource.class)
 			.register(JacksonFeature.class)
-			.register(MapResource.class);
+			.register(ReplayResource.class);
+			//.register(MapResource.class);
 				// requires to inject a GameData into your GameResource
 //			.register(new AbstractBinder() {
 //				@Override

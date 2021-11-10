@@ -19,7 +19,9 @@ public class Tile {
 
     public static String tileKind[] = {"water", "tree", "grass" };
 
-    Tile(int x, int y, String kind) throws UnknownTileException {
+    public Tile(){}
+    
+    public Tile(int x, int y, String kind) throws UnknownTileException {
         // make sure the tile is of a known klnd
         switch(kind) {
             case "water":

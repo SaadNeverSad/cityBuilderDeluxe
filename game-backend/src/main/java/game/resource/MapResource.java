@@ -7,9 +7,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -27,8 +26,6 @@ import java.util.stream.Collectors;
 public class MapResource {
 
     private List<Map> maps;
-
-    
 
     public MapResource() {
         this.maps = new ArrayList<>();
@@ -55,7 +52,7 @@ public class MapResource {
         saveMap();
     }
 
-    public void saveMap() {
+    private void saveMap() {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(new File("/tmp/testMap.json"), this.maps.get(0));
@@ -80,10 +77,10 @@ public class MapResource {
     public void postScore(@PathParam("name") String name, final Score score) throws UnkownMapException {
             Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new UnkownMapException(name));
             map.getScores().add(score);
-            saveScore();           
+            saveScores();           
     }
 
-    public void saveScore() {
+    private void saveScores() {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(new File("/tmp/testScore.json"), this.maps.get(0).getScores() );
