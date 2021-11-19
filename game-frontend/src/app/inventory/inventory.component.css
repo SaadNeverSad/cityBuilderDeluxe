@@ -5,6 +5,8 @@
 }
 
 .block-container {
+  cursor: pointer;
+  pointer-events: all;
   position: relative;
   margin: 0 10px;
   display: inline-block;
@@ -12,6 +14,15 @@
   padding: 8px;
   border-radius: 12px;
   box-shadow: 0 0 1em #ccc;
+  border: 2px solid transparent;
+}
+
+.block-container-outline {
+  border: 2px solid #498bd8;
+}
+
+.block-container img {
+  pointer-events: none;
 }
 
 .badge {

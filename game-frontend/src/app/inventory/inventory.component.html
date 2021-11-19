@@ -1,18 +1,42 @@
 <div class="inventory">
-  <span class="block-container">
-    <div class="badge">{{ gameService.getInventoryHouses() }}</div>
+  <span
+    class="block-container"
+    [class.block-container-outline]="
+      gameService.player.selectedBlock === BlockKind.House
+    "
+    [ioClick]="selectHouse"
+  >
+    <div class="badge">{{ gameService.player.inventory.houses }}</div>
     <img src="assets/house.svg" alt="house" class="tile" />
   </span>
-  <span class="block-container">
-    <div class="badge">{{ gameService.getInventoryWindTurbines() }}</div>
+  <span
+    class="block-container"
+    [class.block-container-outline]="
+      gameService.player.selectedBlock === BlockKind.WindTurbine
+    "
+    [ioClick]="selectWindTurbine"
+  >
+    <div class="badge">{{ gameService.player.inventory.windTurbines }}</div>
     <img src="assets/wind-turbine.svg" alt="wind turbine" class="tile" />
   </span>
-  <span class="block-container">
-    <div class="badge">{{ gameService.getInventoryCircuses() }}</div>
+  <span
+    class="block-container"
+    [class.block-container-outline]="
+      gameService.player.selectedBlock === BlockKind.Circus
+    "
+    [ioClick]="selectCircus"
+  >
+    <div class="badge">{{ gameService.player.inventory.circuses }}</div>
     <img src="assets/circus.svg" alt="circus" class="tile" />
   </span>
-  <span class="block-container">
-    <div class="badge">{{ gameService.getInventoryFountains() }}</div>
+  <span
+    class="block-container"
+    [class.block-container-outline]="
+      gameService.player.selectedBlock === BlockKind.Fountain
+    "
+    [ioClick]="selectFountain"
+  >
+    <div class="badge">{{ gameService.player.inventory.fountains }}</div>
     <img src="assets/fountain.svg" alt="fountain" class="tile" />
   </span>
 </div>

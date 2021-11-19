@@ -7,28 +7,17 @@ import Tile from '../model/tile';
   providedIn: 'root',
 })
 export class GameService {
-  private game: Game;
-  private player: Player;
+  game: Game;
+  player: Player;
 
   constructor() {
     this.game = new Game();
     this.player = new Player();
   }
 
-  getTiles(): Tile[][] {
-    return this.game.map.tiles;
-  }
-
-  getInventoryHouses(): number {
-    return this.player.inventory.houses;
-  }
-  getInventoryWindTurbines(): number {
-    return this.player.inventory.windTurbines;
-  }
-  getInventoryCircuses(): number {
-    return this.player.inventory.circuses;
-  }
-  getInventoryFountains(): number {
-    return this.player.inventory.fountains;
+  // Ends the game.
+  endGame() {
+    this.game = new Game();
+    this.player = new Player();
   }
 }

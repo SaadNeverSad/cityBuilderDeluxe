@@ -1,3 +1,14 @@
 body {
   font-family: Arial;
 }
+
+button {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #eee;
+}
+
+button:active {
+  border: 1px solid #777;
+}

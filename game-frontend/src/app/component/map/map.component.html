@@ -3,9 +3,12 @@
     <ng-container *ngFor="let x of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
       <img
         class="tile"
+        ondragstart="return false"
+        [class.selectable]="gameService.game.map.tiles[x][y].selectable"
+        [ioClick]="addBlock"
         [attr.data-x]="x"
         [attr.data-y]="y"
-        [src]="gameService.getTiles()[x][y].src"
+        [src]="gameService.game.map.tiles[x][y].src"
       />
     </ng-container>
   </ng-container>

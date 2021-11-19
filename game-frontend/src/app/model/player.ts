@@ -1,14 +1,7 @@
-class Inventory {
-  houses: number = 12;
-  windTurbines: number = 5;
-  circuses: number = 4;
-  fountains: number = 8;
-}
+import { BlockKind } from './block';
+import { Inventory } from './inventory';
 
 export class Player {
-  inventory: Inventory;
-
-  constructor() {
-    this.inventory = new Inventory();
-  }
+  selectedBlock: BlockKind = BlockKind.House;
+  inventory: Inventory = new Inventory();
 }
