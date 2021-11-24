@@ -20,6 +20,7 @@
     "@angular/router": "~12.0.1",
     "interacto": "^6.0.0",
     "interacto-angular": "^1.0.0-beta.12",
+    "ng-circle-progress": "^1.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
