@@ -51,6 +51,7 @@ export class AddBlock extends UndoableCommand {
     /*
       METTRE A JOUR LE SCORE
     */
+
   }
   public undo(): void {
     let tileKind = this.tile.block?.kind;

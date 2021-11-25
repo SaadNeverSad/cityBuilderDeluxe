@@ -64,11 +64,15 @@ export class MapComponent implements OnInit {
       .bind();
   }
 
-  getAdjacScores(x: number, y: number) {
+  public getAdjacScores(x: number, y: number) {
     let tree_tiles_num = 0;
+    let water_tiles_num = 0;
     let circus_block_num = 0;
+    let house_block_num = 0;
+    let windTurbine_block_num = 0;
+    let fountain_block_num = 0;
+    let bonus = 0;
 
-    let adjac = new Array(9);
     for (let i = x - 1; i < x + 1; i++) {
       for (let j = y - 1; j < y + 1; j++) {
         if (x == i && y == j) {
@@ -77,12 +81,31 @@ export class MapComponent implements OnInit {
         let tile = this.gameService.game.map.tiles[x][y];
         if (tile instanceof TreeTile) {
           tree_tiles_num++;
-        } else if (tile instanceof GrassTile) {
-          if (tile.block === BlockKind.Circus) {
+        }else if(tile instanceof WaterTile){
+          water_tiles_num++;
+        }
+         else if (tile instanceof GrassTile) {
+          if (tile.block?.kind === BlockKind.Circus) {
             circus_block_num++;
+          }else if (tile.block?.kind === BlockKind.House) {
+            house_block_num++;
+          }else if (tile.block?.kind === BlockKind.WindTurbine) {
+            windTurbine_block_num++;
+          }else if (tile.block?.kind === BlockKind.Fountain) {
+            fountain_block_num++;
           }
         }
       }
     }
+    if(this.gameService.player.selectedBlock == BlockKind.House){
+      bonus = 6 + 5*tree_tiles_num + 10*circus_block_num + 8*fountain_block_num - house_block_num - 12*windTurbine_block_num;
+    }else if(this.gameService.player.selectedBlock == BlockKind.Circus){
+      bonus = 8 - 25*circus_block_num + 15* house_block_num ;
+    }else if(this.gameService.player.selectedBlock == BlockKind.Fountain){
+      bonus = 6 + 6*circus_block_num + 8* house_block_num ;
+    }else if(this.gameService.player.selectedBlock == BlockKind.WindTurbine){
+      bonus = 15 - 8* house_block_num - 4*tree_tiles_num + 10*water_tiles_num;
+    }
+    return bonus;
   }
 }
