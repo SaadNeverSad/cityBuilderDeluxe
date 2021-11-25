@@ -1,25 +1,24 @@
 package game.resource;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import game.model.Replay;
+
+import javax.inject.Singleton;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Singleton;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import game.model.Replay;
 
 @Singleton
 @Path("")
 public class ReplayResource {
 
-    private List<Replay> replays;
+    private final List<Replay> replays;
 
     public ReplayResource() {
         this.replays = new ArrayList<>();
@@ -32,13 +31,13 @@ public class ReplayResource {
     @Produces(MediaType.APPLICATION_JSON)
     public void storeReplay(final Replay replay) {
         this.replays.add(replay);
-        saveReplays();           
+        saveReplays();
     }
 
     private void saveReplays() {
-        ObjectMapper mapper = new ObjectMapper();
+        final ObjectMapper mapper = new ObjectMapper();
         try {
-            mapper.writeValue(new File("/tmp/testReplays.json"), this.replays );
+            mapper.writeValue(new File("testReplays.json"), this.replays);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +46,7 @@ public class ReplayResource {
     @GET
     @Path("replays")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Replay> getReplays(){
+    public List<Replay> getReplays() {
         return this.replays;
     }
 }

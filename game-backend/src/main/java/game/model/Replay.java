@@ -1,8 +1,8 @@
 package game.model;
-import java.util.Deque;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Deque;
 
 
 @XmlRootElement
@@ -20,5 +20,6 @@ public class Replay {
     @XmlElement
     private Deque<Undoable> nextMoves;
 
-    public Replay(){}
+    public Replay() {
+    }
 }

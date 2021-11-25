@@ -5,17 +5,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Undoable {
-    
+
     @XmlElement
     String action;
 
     @XmlElement
     Tile tile;
 
-    public Undoable(){}
+    public Undoable() {
+    }
 
-    public Undoable(String action, Tile tile){
-        this.action=action;
+    public Undoable(final String action, final Tile tile) {
+        this.action = action;
         this.tile = tile;
     }
 }

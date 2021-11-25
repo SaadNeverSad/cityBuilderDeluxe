@@ -4,7 +4,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-
 @XmlRootElement
 public class Score {
 
@@ -14,10 +13,12 @@ public class Score {
     @XmlElement
     private Player player;
 
-    Score(){}
-    Score(Player player, int score){
+    Score() {
+    }
+
+    Score(final Player player, final int score) {
         this.player = player;
-        this.score=score;
+        this.score = score;
     }
 
     public int getScore() {

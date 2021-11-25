@@ -1,31 +1,29 @@
 package game.resource;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import game.exceptions.UnkownMapException;
+import game.model.Map;
+import game.model.Score;
+
 import javax.inject.Singleton;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
-
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import game.exceptions.UnkownMapException;
-import game.model.Map;
-import game.model.Score;
 import java.io.File;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Singleton
 @Path("map")
 public class MapResource {
 
-    private List<Map> maps;
+    private final List<Map> maps;
 
     public MapResource() {
         this.maps = new ArrayList<>();
@@ -41,7 +39,7 @@ public class MapResource {
     @GET
     @Path("{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Map getMap(@PathParam("name") String name) {
+    public Map getMap(@PathParam("name") final String name) {
         return this.maps.stream().filter(m -> m.getName().equals(name)).findFirst().orElseThrow();
     }
 
@@ -53,9 +51,9 @@ public class MapResource {
     }
 
     private void saveMap() {
-        ObjectMapper mapper = new ObjectMapper();
+        final ObjectMapper mapper = new ObjectMapper();
         try {
-            mapper.writeValue(new File("/tmp/testMap.json"), this.maps.get(0));
+            mapper.writeValue(new File("testMap.json"), this.maps.get(0));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,8 +62,8 @@ public class MapResource {
     @GET
     @Path("{name}/bestScores")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Score> getBestScores(@PathParam("name") String name) throws UnkownMapException{
-        Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new UnkownMapException(name));
+    public List<Score> getBestScores(@PathParam("name") final String name) throws UnkownMapException {
+        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new UnkownMapException(name));
         return map.getScores().stream().sorted(Comparator.comparing(Score::getScore).reversed()).limit(5)
                 .collect(Collectors.toList());
     }
@@ -74,16 +72,16 @@ public class MapResource {
     @Path("{name}/score")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
-    public void postScore(@PathParam("name") String name, final Score score) throws UnkownMapException {
-            Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new UnkownMapException(name));
-            map.getScores().add(score);
-            saveScores();           
+    public void postScore(@PathParam("name") final String name, final Score score) throws UnkownMapException {
+        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new UnkownMapException(name));
+        map.getScores().add(score);
+        saveScores();
     }
 
     private void saveScores() {
-        ObjectMapper mapper = new ObjectMapper();
+        final ObjectMapper mapper = new ObjectMapper();
         try {
-            mapper.writeValue(new File("/tmp/testScore.json"), this.maps.get(0).getScores() );
+            mapper.writeValue(new File("testScore.json"), this.maps.get(0).getScores());
         } catch (Exception e) {
             e.printStackTrace();
         }
