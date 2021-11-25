@@ -3,6 +3,10 @@ import { AnonCmd, PartialPointBinder } from 'interacto';
 import { AddBlock } from 'src/app/command/AddBlock';
 import { Block, BlockKind } from 'src/app/model/block';
 import { GrassTile } from 'src/app/model/grass-tile';
+import { Player } from 'src/app/model/player';
+import Tile from 'src/app/model/tile';
+import { TreeTile } from 'src/app/model/tree-tile';
+import { WaterTile } from 'src/app/model/water-tile';
 import { GameService } from 'src/app/service/game.service';
 import Map from '../../model/map';
 
@@ -37,26 +41,15 @@ export class MapComponent implements OnInit {
 
         // make sure the block count allows to place this block
         if (
-          player.selectedBlock == BlockKind.House &&
-          player.inventory.houses > 0
+          (player.selectedBlock === BlockKind.House &&
+            player.inventory.houses === 0) ||
+          (player.selectedBlock === BlockKind.WindTurbine &&
+            player.inventory.windTurbines === 0) ||
+          (player.selectedBlock === BlockKind.Circus &&
+            player.inventory.circuses === 0) ||
+          (player.selectedBlock === BlockKind.Fountain &&
+            player.inventory.fountains === 0)
         ) {
-          player.inventory.houses--;
-        } else if (
-          player.selectedBlock == BlockKind.WindTurbine &&
-          player.inventory.windTurbines > 0
-        ) {
-          player.inventory.windTurbines--;
-        } else if (
-          player.selectedBlock == BlockKind.Circus &&
-          player.inventory.circuses > 0
-        ) {
-          player.inventory.circuses--;
-        } else if (
-          player.selectedBlock == BlockKind.Fountain &&
-          player.inventory.fountains > 0
-        ) {
-          player.inventory.fountains--;
-        } else {
           return new AnonCmd(() => {});
         }
 
@@ -69,5 +62,27 @@ export class MapComponent implements OnInit {
       })
       .when((i) => i.button === 0)
       .bind();
+  }
+
+  getAdjacScores(x: number, y: number) {
+    let tree_tiles_num = 0;
+    let circus_block_num = 0;
+
+    let adjac = new Array(9);
+    for (let i = x - 1; i < x + 1; i++) {
+      for (let j = y - 1; j < y + 1; j++) {
+        if (x == i && y == j) {
+          continue;
+        }
+        let tile = this.gameService.game.map.tiles[x][y];
+        if (tile instanceof TreeTile) {
+          tree_tiles_num++;
+        } else if (tile instanceof GrassTile) {
+          if (tile.block === BlockKind.Circus) {
+            circus_block_num++;
+          }
+        }
+      }
+    }
   }
 }

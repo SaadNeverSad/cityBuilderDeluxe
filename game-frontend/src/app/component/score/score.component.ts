@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Player } from 'src/app/model/player';
-import * as internal from 'stream';
+import { GameService } from 'src/app/service/game.service';
 
 @Component({
   selector: 'app-score',
   templateUrl: './score.component.html',
-  styleUrls: ['./score.component.css']
+  styleUrls: ['./score.component.css'],
 })
 export class ScoreComponent implements OnInit {
-  score:number;
-  scoreLimit =200;
-  progressBar : number;
-  title:string;
-  constructor() {
-    this.score=100;
-    this.progressBar=this.score/this.scoreLimit*100;
-    this.title="Score: "+this.score+ "/"+this.scoreLimit;
+  progressBar: number;
+  title: string;
+  constructor(gameService: GameService) {
+    this.progressBar =
+      (gameService.game.score / gameService.game.scoreLimit) * 100;
+    this.title =
+      'Score: ' + gameService.game.score + '/' + gameService.game.scoreLimit;
   }
 
-  ngOnInit(): void {
-  }
-
-
+  ngOnInit(): void {}
 }
