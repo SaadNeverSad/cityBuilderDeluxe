@@ -7,7 +7,14 @@ export enum BlockKind {
 
 export class Block {
   kind: BlockKind;
+  radius: number;
   constructor(kind: BlockKind) {
+    if (kind === BlockKind.Circus) {
+      this.radius = 3;
+    } else {
+      this.radius = 1;
+    }
+
     this.kind = kind;
   }
 }

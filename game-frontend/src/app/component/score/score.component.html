@@ -1,7 +1,8 @@
 <circle-progress
-  [percent]="progressBar"
+  class="progress"
+  [percent]="getProgressBar()"
+  [title]="getScoreTitle()"
   [radius]="100"
-  [title]="title"
   [outerStrokeWidth]="16"
   [innerStrokeWidth]="8"
   [outerStrokeColor]="'#78C000'"

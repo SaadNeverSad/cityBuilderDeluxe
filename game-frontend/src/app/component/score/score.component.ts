@@ -7,13 +7,24 @@ import { GameService } from 'src/app/service/game.service';
   styleUrls: ['./score.component.css'],
 })
 export class ScoreComponent implements OnInit {
-  progressBar: number;
-  title: string;
+  gameService: GameService;
   constructor(gameService: GameService) {
-    this.progressBar =
-      (gameService.game.score / gameService.game.scoreLimit) * 100;
-    this.title =
-      'Score: ' + gameService.game.score + '/' + gameService.game.scoreLimit;
+    this.gameService = gameService;
+  }
+
+  getScoreTitle(): string {
+    return (
+      'Score: ' +
+      this.gameService.game.score +
+      '/' +
+      this.gameService.game.scoreLimit
+    );
+  }
+
+  getProgressBar(): number {
+    return (
+      (this.gameService.game.score / this.gameService.game.scoreLimit) * 100
+    );
   }
 
   ngOnInit(): void {}

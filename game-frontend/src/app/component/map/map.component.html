@@ -1,15 +1,27 @@
 <div class="map">
   <ng-container *ngFor="let y of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
     <ng-container *ngFor="let x of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
-      <img
-        class="tile"
-        ondragstart="return false"
-        [class.selectable]="gameService.game.map.tiles[x][y].selectable"
-        [ioClick]="addBlock"
-        [attr.data-x]="x"
-        [attr.data-y]="y"
-        [src]="gameService.game.map.tiles[x][y].src"
-      />
+      <span
+        class="tile-container"
+        (mouseenter)="setHovered(x, y)"
+        (mouseleave)="removeHovered()"
+      >
+        <img
+          class="tile"
+          ondragstart="return false"
+          [class.selectable]="gameService.game.map.tiles[x][y].selectable"
+          [ioClick]="addBlock"
+          [attr.data-x]="x"
+          [attr.data-y]="y"
+          [src]="gameService.game.map.tiles[x][y].src"
+        />
+        <p
+          *ngIf="isAdjacent(x, y) && getTileScore(x, y) != 0"
+          class="score-preview"
+        >
+          {{ getTileScore(x, y) }}
+        </p>
+      </span>
     </ng-container>
   </ng-container>
 </div>

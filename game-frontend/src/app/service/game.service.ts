@@ -1,7 +1,8 @@
+import * as _ from 'lodash';
+
 import { Injectable } from '@angular/core';
 import { Game } from '../model/game';
 import { Player } from '../model/player';
-import Tile from '../model/tile';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,7 @@ export class GameService {
     this.player = new Player();
   }
 
-  // Ends the game.
-  endGame() {
-    this.game = new Game();
-    this.player = new Player();
+  clone(): GameService {
+    return _.cloneDeep(this);
   }
 }

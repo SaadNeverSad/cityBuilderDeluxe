@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from 'src/app/model/game';
 import { GameService } from 'src/app/service/game.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class GameBarComponent implements OnInit {
   }
 
   endGame() {
-    this.gameService.endGame();
+    Object.assign(this.gameService, new GameService());
   }
 
   ngOnInit(): void {}

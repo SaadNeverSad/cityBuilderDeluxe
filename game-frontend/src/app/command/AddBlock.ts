@@ -1,28 +1,33 @@
+import { Title } from '@angular/platform-browser';
 import { UndoableCommand } from 'interacto';
 import { BlockKind } from '../model/block';
 import { GrassTile } from '../model/grass-tile';
-import { Inventory } from '../model/inventory';
-import Tile from '../model/tile';
 import { GameService } from '../service/game.service';
 
 /**
  * Undoable command to place a block on the map.
  */
 export class AddBlock extends UndoableCommand {
+  x: number;
+  y: number;
   gameService: GameService;
-  tile: GrassTile;
-  inventory: Inventory;
-  score: number;
-  scoreLimit: number;
+  gameServiceSnapshot: GameService;
+  scoreAdded: number;
 
-  constructor(tile: GrassTile, gameService: GameService) {
+  constructor(
+    x: number,
+    y: number,
+    scoreAdded: number,
+    gameService: GameService
+  ) {
     super();
     this.gameService = gameService;
-    // deep copy
-    this.inventory = { ...gameService.player.inventory };
-    this.score = gameService.game.score;
-    this.scoreLimit = gameService.game.scoreLimit;
-    this.tile = tile;
+
+    // make a copy of the game service
+    this.gameServiceSnapshot = this.gameService.clone();
+    this.scoreAdded = scoreAdded;
+    this.x = x;
+    this.y = y;
   }
 
   protected execution(): void {
@@ -32,43 +37,43 @@ export class AddBlock extends UndoableCommand {
     return 'Add city block';
   }
   public redo(): void {
-    this.tile.set(this.gameService.player.selectedBlock);
-
-    let tileKind = this.tile.block?.kind;
-    if (tileKind === BlockKind.House) {
-      this.inventory.houses--;
-    } else if (tileKind === BlockKind.WindTurbine) {
-      this.inventory.windTurbines--;
-    } else if (tileKind === BlockKind.Circus) {
-      this.inventory.circuses--;
-    } else if (tileKind === BlockKind.Fountain) {
-      this.inventory.fountains--;
-    } else {
-      console.log('branche cheloy ');
+    let tile = this.gameService.game.map.tiles[this.x][this.y];
+    if (!(tile instanceof GrassTile)) {
+      return;
     }
 
-    this.gameService.player.inventory = { ...this.inventory };
-    /*
-      METTRE A JOUR LE SCORE
-    */
+    tile.set(this.gameService.player.selectedBlock);
 
+    // decrement the inventory count
+    let tileKind = tile.block?.kind;
+    if (tileKind === BlockKind.House) {
+      this.gameService.player.inventory.houses--;
+    } else if (tileKind === BlockKind.WindTurbine) {
+      this.gameService.player.inventory.windTurbines--;
+    } else if (tileKind === BlockKind.Circus) {
+      this.gameService.player.inventory.circuses--;
+    } else if (tileKind === BlockKind.Fountain) {
+      this.gameService.player.inventory.fountains--;
+    }
+
+    // check if we need a new turn
+    let scoreAdded = this.scoreAdded;
+    while (
+      this.gameService.game.score + scoreAdded >=
+      this.gameService.game.scoreLimit
+    ) {
+      this.gameService.game.turn++;
+      this.gameService.player.inventory.increase();
+      scoreAdded -=
+        this.gameService.game.scoreLimit - this.gameService.game.score;
+      this.gameService.game.score = this.gameService.game.scoreLimit;
+      this.gameService.game.scoreLimit += 10 * this.gameService.game.turn;
+    }
+
+    this.gameService.game.score = this.gameService.game.score + scoreAdded;
   }
   public undo(): void {
-    let tileKind = this.tile.block?.kind;
-
-    if (tileKind === BlockKind.House) {
-      this.inventory.houses++;
-    } else if (tileKind === BlockKind.WindTurbine) {
-      this.inventory.windTurbines++;
-    } else if (tileKind === BlockKind.Circus) {
-      this.inventory.circuses++;
-    } else if (tileKind === BlockKind.Fountain) {
-      this.inventory.fountains++;
-    }
-
-    this.gameService.game.score = this.score;
-    this.gameService.game.scoreLimit = this.scoreLimit;
-    this.gameService.player.inventory = { ...this.inventory };
-    this.tile.unset();
+    Object.assign(this.gameService, this.gameServiceSnapshot);
+    this.gameServiceSnapshot = this.gameService.clone();
   }
 }

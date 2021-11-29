@@ -11,15 +11,8 @@ export class GrassTile extends Tile {
    * Sets a block on the tile.
    */
   set(kind: BlockKind) {
+    this.selectable = false;
     this.block = new Block(kind);
     this.src = kind;
-  }
-
-  /**
-   * Removes a block on the tile.
-   */
-  unset() {
-    this.block = null;
-    this.src = 'assets/empty.svg';
   }
 }
