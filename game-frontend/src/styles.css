@@ -3,6 +3,8 @@ body {
 }
 
 button {
+  margin: 5px;
+  cursor: pointer;
   padding: 4px;
   border: 1px solid #ccc;
   border-radius: 4px;

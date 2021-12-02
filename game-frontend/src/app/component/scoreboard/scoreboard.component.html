@@ -1,0 +1,17 @@
+<div
+  [@slide]="gameService.game.map.scoreboard.open ? 'show' : 'hide'"
+  class="scoreboard-popup"
+>
+  <h1>Best scores</h1>
+  <h2>1.</h2>
+  <h2>2.</h2>
+  <h2>3.</h2>
+  <h2>4.</h2>
+  <h2>5.</h2>
+  <button (click)="gameService.game.map.scoreboard.open = false">Close</button>
+</div>
+
+<div
+  [@focus]="gameService.game.map.scoreboard.open ? 'show' : 'hide'"
+  class="focus"
+></div>

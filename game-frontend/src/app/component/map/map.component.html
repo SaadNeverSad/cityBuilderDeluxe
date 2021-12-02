@@ -10,6 +10,11 @@
           class="tile"
           ondragstart="return false"
           [class.selectable]="gameService.game.map.tiles[x][y].selectable"
+          [style.cursor]="
+            gameService.game.map.tiles[x][y].selectable
+              ? 'url(' + gameService.player.selectedBlock + ') 58 100, pointer'
+              : 'not-allowed'
+          "
           [ioClick]="addBlock"
           [attr.data-x]="x"
           [attr.data-y]="y"

@@ -1,5 +1,10 @@
-<div>
-  <button (click)="this.endGame()">End Game</button>
-  <button ioUndo>Undo</button>
-  <button ioRedo>Redo</button>
+<div class="game-bar">
+  <div>
+    <button (click)="this.endGame()">End Game</button>
+    <button ioUndo>Undo</button>
+    <button ioRedo>Redo</button>
+  </div>
+  <button (click)="gameService.game.map.scoreboard.open = true">
+    <img src="/assets/ranking.svg" alt="" srcset="" />
+  </button>
 </div>
