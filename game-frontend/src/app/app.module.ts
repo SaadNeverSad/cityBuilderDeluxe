@@ -9,6 +9,8 @@ import { GameBarComponent } from './component/game-bar/game-bar.component';
 import { ScoreComponent } from './component/score/score.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { Score } from './model/score';
+import { RegisterComponent } from './component/register/register.component';
+import { GameComponent } from './game/game.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +18,8 @@ import { Score } from './model/score';
     InventoryComponent,
     GameBarComponent,
     ScoreComponent,
+    RegisterComponent,
+    GameComponent,
   ],
   imports: [InteractoModule, BrowserModule, AppRoutingModule,NgCircleProgressModule.forRoot({
     // set defaults here
@@ -26,6 +30,7 @@ import { Score } from './model/score';
     innerStrokeColor: "#C7E596",
     animationDuration: 300,
     showSubtitle: false,
+    startFromZero: false,
     //title : "Score :",
     //showInnerStroke: false,
     showUnits: false
