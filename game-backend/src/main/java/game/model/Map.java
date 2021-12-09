@@ -18,13 +18,13 @@ public final class Map {
     private String name;
 
     @XmlElement
-    private Tile tiles[];
+    private String tiles[][];
 
     @XmlElement
     private List<Score> scores;
 
     private Map() {
-        this.tiles = new Tile[100];
+        this.tiles = new String[10][10];
         this.scores = new ArrayList<>();
     }
 
@@ -46,15 +46,16 @@ public final class Map {
     public static Map generateRandomMap() {
         final Map map = new Map();
         final Random r = new Random();
+        final String tileKinds[] = {"water", "grass", "tree"};
 
         final String firstEl = randomNames[r.nextInt(randomNames.length)];
         final String secondEl = randomNames[r.nextInt(randomNames.length)];
         map.name = String.join(" ", firstEl, secondEl);
 
-        IntStream.range(1, 10)
+        IntStream.range(0, 10)
                 .forEach(i -> {
-                    final String tileKind = Tile.tileKind[r.nextInt(3)];
-                    IntStream.range(1, 10).forEach(j -> map.tiles[10 * i + j] = new Tile(i, j, tileKind));
+                    final String tileKind = tileKinds[r.nextInt(3)];
+                    IntStream.range(0, 10).forEach(j -> map.tiles[i][j] = tileKind);
                 });
 
         return map;

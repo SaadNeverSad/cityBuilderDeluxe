@@ -5,6 +5,7 @@ import { TreeTile } from './tree-tile';
 import { ScoreBoard } from './score-board';
 
 export default class Map {
+  name: string;
   scoreboard: ScoreBoard;
   tiles: Tile[][];
 
@@ -21,8 +22,10 @@ export default class Map {
   }
 
   constructor() {
+    this.name = '';
     this.scoreboard = new ScoreBoard();
     this.tiles = new Array(10);
+
     for (let i = 0; i < 10; i++) {
       this.tiles[i] = new Array(10);
       for (let j = 0; j < 10; j++) {

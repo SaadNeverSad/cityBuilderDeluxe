@@ -5,15 +5,12 @@
       <input placeholder="Player Name" required="" type="text" />
       <label for="maps"></label>
       <select id="maps" name="maps" required>
-        <option value="" disabled selected>Select a map</option>
-        <option value="toto">toto</option>
-        <option value="saab">Saab</option>
-        <option value="insa">insa</option>
-        <option value="java" type ="button">Generate Random Map</option>
+        <option name="rand" value="rand" selected="selected">
+          Generate Random Map
+        </option>
+        <option *ngFor="let map of maps" [value]="map">{{ map }}</option>
       </select>
-      <a routerLink = "/game"><button type="button" >Play</button></a>
-    </form>  
+      <a routerLink="/game"><button type="button">Play</button></a>
+    </form>
   </div>
 </body>
-
-

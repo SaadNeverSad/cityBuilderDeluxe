@@ -1,4 +1,3 @@
-import { Title } from '@angular/platform-browser';
 import { UndoableCommand } from 'interacto';
 import { BlockKind } from '../model/block';
 import { GrassTile } from '../model/grass-tile';

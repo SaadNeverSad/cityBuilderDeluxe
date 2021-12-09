@@ -9,7 +9,6 @@ public class Undoable {
     @XmlElement
     String action;
 
-    @XmlElement
     Tile tile;
 
     public Undoable() {

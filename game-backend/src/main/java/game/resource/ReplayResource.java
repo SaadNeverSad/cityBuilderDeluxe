@@ -24,7 +24,6 @@ public class ReplayResource {
         this.replays = new ArrayList<>();
     }
 
-
     @POST
     @Path("replay")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

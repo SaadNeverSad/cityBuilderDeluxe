@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { log } from 'console';
 import { AnonCmd, PartialPointBinder } from 'interacto';
 import { AddBlock } from 'src/app/command/AddBlock';
 import { Block, BlockKind } from 'src/app/model/block';
