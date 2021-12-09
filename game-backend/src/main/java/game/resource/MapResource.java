@@ -45,9 +45,13 @@ public class MapResource {
 
     @GET
     @Path("newMap")
-    public void getNewMap() {
-        this.maps.add(Map.generateRandomMap());
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map getNewMap() {
+        final Map newMap = Map.generateRandomMap();
+        this.maps.add(newMap);
         saveMap();
+
+        return newMap;
     }
 
     private void saveMap() {
@@ -63,17 +67,19 @@ public class MapResource {
     @Path("{name}/bestScores")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Score> getBestScores(@PathParam("name") final String name) throws UnkownMapException {
-        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new UnkownMapException(name));
+        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst()
+                .orElseThrow(() -> new UnkownMapException(name));
         return map.getScores().stream().sorted(Comparator.comparing(Score::getScore).reversed()).limit(5)
                 .collect(Collectors.toList());
     }
 
     @POST
     @Path("{name}/score")
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces(MediaType.APPLICATION_JSON)
     public void postScore(@PathParam("name") final String name, final Score score) throws UnkownMapException {
-        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new UnkownMapException(name));
+        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst()
+                .orElseThrow(() -> new UnkownMapException(name));
         map.getScores().add(score);
         saveScores();
     }

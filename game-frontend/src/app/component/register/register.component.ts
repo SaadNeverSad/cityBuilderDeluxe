@@ -11,7 +11,6 @@ import { GameService } from 'src/app/service/game.service';
 })
 export class RegisterComponent implements OnInit {
   maps: Array<String> = [];
-  selectedMap: String = 'rand';
   gameService: GameService;
 
   constructor(httpClient: HttpClient, gameService: GameService) {

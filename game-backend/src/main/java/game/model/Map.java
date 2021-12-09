@@ -46,7 +46,7 @@ public final class Map {
     public static Map generateRandomMap() {
         final Map map = new Map();
         final Random r = new Random();
-        final String tileKinds[] = {"water", "grass", "tree"};
+        final String tileKinds[] = { "water", "grass", "tree" };
 
         final String firstEl = randomNames[r.nextInt(randomNames.length)];
         final String secondEl = randomNames[r.nextInt(randomNames.length)];
@@ -54,8 +54,10 @@ public final class Map {
 
         IntStream.range(0, 10)
                 .forEach(i -> {
-                    final String tileKind = tileKinds[r.nextInt(3)];
-                    IntStream.range(0, 10).forEach(j -> map.tiles[i][j] = tileKind);
+                    IntStream.range(0, 10).forEach(j -> {
+                        final String tileKind = tileKinds[r.nextInt(3)];
+                        map.tiles[i][j] = tileKind;
+                    });
                 });
 
         return map;

@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AnonCmd, PartialPointBinder } from 'interacto';
 import { AddBlock } from 'src/app/command/AddBlock';
 import { Block, BlockKind } from 'src/app/model/block';
 import { GrassTile } from 'src/app/model/grass-tile';
+import { BackendMap } from 'src/app/model/map';
 import { TreeTile } from 'src/app/model/tree-tile';
 import { WaterTile } from 'src/app/model/water-tile';
 import { GameService } from 'src/app/service/game.service';
@@ -13,14 +15,35 @@ import { GameService } from 'src/app/service/game.service';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit {
-  gameService: GameService;
-
   // the hovered tile coordinates, as a tuple.
   // if no tile is hovered, this is null.
   hovered: [number, number] | null = null;
 
-  constructor(gameService: GameService) {
-    this.gameService = gameService;
+  constructor(public gameService: GameService, httpClient: HttpClient) {
+    let apiCall;
+    // ask the backend to create a random map
+    if (gameService.game.map.name === 'rand') {
+      apiCall = 'api/map/newMap';
+    } else {
+      apiCall = 'api/map/' + gameService.game.map.name;
+    }
+
+    httpClient.get<BackendMap>(apiCall).subscribe((map) => {
+      for (let x in map.tiles) {
+        for (let y in map.tiles[x]) {
+          let tile;
+          if (map.tiles[x][y] == 'water') {
+            tile = new WaterTile();
+          } else if (map.tiles[x][y] == 'tree') {
+            tile = new TreeTile();
+          } else {
+            tile = new GrassTile();
+          }
+
+          gameService.game.map.tiles[x][y] = tile;
+        }
+      }
+    });
   }
 
   ngOnInit(): void {}

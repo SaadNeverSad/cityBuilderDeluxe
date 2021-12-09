@@ -1,16 +1,20 @@
-<!--<div class='wood-text'>City Builder</div>-->
 <body>
   <div class="register">
     <form>
-      <input placeholder="Player Name" required="" type="text" />
+      <input
+        [(ngModel)]="gameService.player.name"
+        name="playerName"
+        placeholder="Player Name"
+        type="text"
+      />
       <label for="maps"></label>
-      <select id="maps" name="maps" required>
+      <select [(ngModel)]="gameService.game.map.name" id="maps" name="maps">
         <option name="rand" value="rand" selected="selected">
           Generate Random Map
         </option>
         <option *ngFor="let map of maps" [value]="map">{{ map }}</option>
       </select>
-      <a routerLink="/game"><button type="button">Play</button></a>
+      <button routerLink="/game" type="button">Play</button>
     </form>
   </div>
 </body>
