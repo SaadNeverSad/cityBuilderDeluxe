@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AnonCmd,
-  PartialPointBinder,
-  PartialPointSrcTgtBinder,
-} from 'interacto';
-import { AddBlock } from '../command/AddBlock';
-import { BlockKind } from '../model/block';
-import { GameService } from '../service/game.service';
+import { AnonCmd, PartialPointBinder } from 'interacto';
+import { BlockKind } from '../../model/block';
+import { GameService } from '../../service/game.service';
 
 @Component({
   selector: 'app-inventory',

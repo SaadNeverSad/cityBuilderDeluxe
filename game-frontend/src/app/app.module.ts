@@ -9,11 +9,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './component/map/map.component';
-import { InventoryComponent } from './inventory/inventory.component';
 import { GameBarComponent } from './component/game-bar/game-bar.component';
 import { ScoreComponent } from './component/score/score.component';
 import { RegisterComponent } from './component/register/register.component';
-import { GameComponent } from './game/game.component';
+import { ScoreboardComponent } from './component/scoreboard/scoreboard.component';
+import { InventoryComponent } from './component/inventory/inventory.component';
+import { GameComponent } from './component/game/game.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { GameComponent } from './game/game.component';
     InventoryComponent,
     GameBarComponent,
     ScoreComponent,
+    ScoreboardComponent,
     RegisterComponent,
     GameComponent,
   ],

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import Map from '../model/map';
 
 @Component({
   selector: 'app-game',
