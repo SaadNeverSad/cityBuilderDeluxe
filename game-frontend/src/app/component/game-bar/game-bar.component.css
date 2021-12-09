@@ -1,4 +1,9 @@
-button {
-  margin: 5px;
-  cursor: pointer;
+.game-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-bar img {
+  width: 48px;
 }

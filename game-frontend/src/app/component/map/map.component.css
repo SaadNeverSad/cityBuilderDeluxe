@@ -16,7 +16,7 @@ div {
     rotateZ(var(--z-rotate));
   margin: auto;
   width: calc(var(--size-cell) * var(--nb-cell));
-  z-index: 1000;
+  z-index: 3;
 }
 
 .tile-container {
@@ -48,10 +48,6 @@ div {
     100px 25px,
     50px 0
   );
-}
-
-.selectable {
-  cursor: pointer;
 }
 
 .selectable:hover {

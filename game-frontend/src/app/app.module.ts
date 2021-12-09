@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { InteractoModule } from 'interacto-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,9 +10,12 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { GameBarComponent } from './component/game-bar/game-bar.component';
 import { ScoreComponent } from './component/score/score.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+
 import { Score } from './model/score';
 import { RegisterComponent } from './component/register/register.component';
 import { GameComponent } from './game/game.component';
+
+import { ScoreboardComponent } from './component/scoreboard/scoreboard.component';
 @NgModule({
   declarations: [
     AppComponent,
