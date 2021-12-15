@@ -3,8 +3,6 @@ div {
   --nb-cell: 10;
   --z-rotate: 45deg;
   --x-rotate: 60deg;
-  /* margin: 0;
-  padding: 0; */
 }
 
 .map {
@@ -52,4 +50,17 @@ div {
 
 .selectable:hover {
   opacity: 0.8;
+}
+
+.tile {  
+  animation: fade 3s;
+}
+
+@keyframes fade {
+  from {
+    transform: rotateZ(-45deg) rotateY(-60deg) scale(0);
+  }
+  to {
+    transform: rotateZ(-45deg) rotateY(-60deg) scale(1.6);
+  }
 }

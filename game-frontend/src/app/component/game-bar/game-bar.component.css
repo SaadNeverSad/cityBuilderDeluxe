@@ -1,9 +1,40 @@
 .game-bar {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;  
 }
 
 .game-bar img {
   width: 48px;
+}
+
+button {
+  display: relative;
+  margin: 4px;
+  line-height: 28pt;
+  padding: 0 20px;
+  background: #CD853F;
+  letter-spacing: 2px;
+  transition: 0.2s all ease-in-out;
+  outline: none;
+  border: 1px solid black;
+  box-shadow: 3px 3px 1px #4a690d	, 3px 3px 1px 1px black;
+  font-family: cursive;
+  font-weight: bold;
+}
+button:hover {
+  background: black;
+  color: white;
+  border: 1px solid black;
+}
+.gameName{
+  font-family: cursive;
+  /* haut | droit | bas | gauche */
+  margin: 0 0 0 8px;
+}
+
+.mapName{ 
+  font-family: cursive;
+  display: inline-block;
+  margin: 0 10px 0 0;
 }
