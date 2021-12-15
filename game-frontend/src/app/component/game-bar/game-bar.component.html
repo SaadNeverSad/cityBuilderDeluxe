@@ -4,7 +4,21 @@
     <button ioUndo>Undo</button>
     <button ioRedo>Redo</button>
   </div>
-  <button (click)="gameService.game.map.scoreboard.open = true">
-    <img src="/assets/ranking.svg" alt="" srcset="" />
-  </button>
+
+
+    
+  <div>
+    <h1 class="mapName">{{gameService.game.map.name}}</h1>
+    <button (click)="gameService.game.map.scoreboard.open = true">
+      <img src="/assets/ranking.svg" alt="" srcset="" />
+    </button>
+  </div>
+  
 </div>
+
+<!--- 
+<div class="gameName">
+  <h1>City Builder DeLuxe</h1>
+</div>
+-->
+

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
-@Path("")
+@Path("game")
 public class ReplayResource {
 
     private final List<Replay> replays;

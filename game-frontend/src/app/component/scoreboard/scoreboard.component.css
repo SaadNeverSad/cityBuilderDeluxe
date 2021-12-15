@@ -11,6 +11,7 @@
   border-radius: 5px;
   padding: 10px 40px;
   border: 1px solid #ccc;
+  font-family: cursive; /*QUAND JE LAISSE LE BUTTON SORT DE LA DIV*/
 }
 
 .scoreboard-popup h1 {
@@ -46,4 +47,22 @@
   to {
     top: 50%;
   }
+}
+
+button {
+  display: relative;
+  line-height: 28pt;
+  padding: 0 10px;
+  background: #CD853F;
+  letter-spacing: 2px;
+  transition: 0.2s all ease-in-out;
+  outline: none;
+  border: 1px solid black;
+  font-family: cursive;
+  font-weight: bold;
+}
+button:hover {
+  background: black;
+  color: white;
+  border: 1px solid black;
 }

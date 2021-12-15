@@ -1,8 +1,19 @@
 .inventory {
   position: absolute;
   bottom: 20px;
-  left: 10px;
+  left: 15px;
+  padding: 0px;
+  border-radius: 12px;
+  box-shadow: 0 0 1em #CD853F;
+  border: 15px solid transparent;
+  animation: fadeIn 2s;
 }
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
 
 .block-container {
   cursor: pointer;
@@ -38,4 +49,6 @@
   text-align: center;
   font-weight: bold;
   font-size: 0.9em;
+  animation: fadeIn 4s;
+  
 }
