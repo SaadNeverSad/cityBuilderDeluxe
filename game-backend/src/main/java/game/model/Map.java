@@ -33,7 +33,7 @@ public final class Map {
     }
 
     private static String randomNames[] = { "good", "map", "bad", "grass", "water", "tree", "java", "angular", "sunny",
-            "rainy", "cloudy", "sad" };
+            "rainy", "cloudy", "sad", "pain" };
 
     public void addScore(final Score s) {
         this.scores.add(s);
@@ -41,6 +41,10 @@ public final class Map {
 
     public List<Score> getScores() {
         return this.scores;
+    }
+
+    public String[][] getTiles() {
+        return this.tiles;
     }
 
     public static Map generateRandomMap() {
