@@ -13,4 +13,16 @@ export class Inventory {
     this.circuses++;
     this.fountains++;
   }
+
+  /**
+   * Returns true if the inventory is empty.
+   */
+  empty() {
+    return (
+      this.houses === 0 &&
+      this.windTurbines === 0 &&
+      this.circuses === 0 &&
+      this.fountains === 0
+    );
+  }
 }

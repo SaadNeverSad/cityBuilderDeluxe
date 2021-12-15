@@ -1,0 +1,18 @@
+<div
+  [@slide]="gameService.game.ended !== GameStatus.NotEnded ? 'show' : 'hide'"
+  class="popup"
+>
+  <h1>Game ended</h1>
+  <p class="end-desc">
+    <em> {{ gameService.game.ended }}</em>
+  </p>
+
+  <p>You did great! Your final score is {{ gameService.game.score }}</p>
+
+  <button (click)="returnToMenu()">Save game and return to menu</button>
+</div>
+
+<div
+  [@focus]="gameService.game.ended !== GameStatus.NotEnded ? 'show' : 'hide'"
+  class="focus"
+></div>

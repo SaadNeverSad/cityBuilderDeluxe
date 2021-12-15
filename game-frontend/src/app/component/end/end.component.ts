@@ -7,11 +7,14 @@ import {
   transition,
 } from '@angular/animations';
 import { GameService } from 'src/app/service/game.service';
+import { Router } from '@angular/router';
+import { Game, GameStatus } from 'src/app/model/game';
+import { UndoHistory } from 'interacto';
 
 @Component({
-  selector: 'app-scoreboard',
-  templateUrl: './scoreboard.component.html',
-  styleUrls: ['./scoreboard.component.css'],
+  selector: 'app-end',
+  templateUrl: './end.component.html',
+  styleUrls: ['./end.component.css'],
   animations: [
     trigger('slide', [
       state('hide', style({ top: '-300px' })),
@@ -28,8 +31,26 @@ import { GameService } from 'src/app/service/game.service';
     ]),
   ],
 })
-export class ScoreboardComponent implements OnInit {
-  constructor(public gameService: GameService) {}
+export class EndComponent implements OnInit {
+  GameStatus = GameStatus;
+
+  constructor(
+    public gameService: GameService,
+    private router: Router,
+    private undoHistory: UndoHistory
+  ) {}
 
   ngOnInit(): void {}
+
+  /**
+   * Returns to the menu and sends the game to the backend.
+   */
+  returnToMenu() {
+    // make sure first to erase the game
+    let playerName = this.gameService.player.name;
+    Object.assign(this.gameService, new GameService());
+    this.gameService.player.name = playerName;
+    this.undoHistory.clear();
+    this.router.navigateByUrl('/');
+  }
 }

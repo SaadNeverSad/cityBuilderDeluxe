@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from 'src/app/model/game';
+import { Game, GameStatus } from 'src/app/model/game';
 import { GameService } from 'src/app/service/game.service';
 
 @Component({
@@ -8,11 +8,9 @@ import { GameService } from 'src/app/service/game.service';
   styleUrls: ['./game-bar.component.css'],
 })
 export class GameBarComponent implements OnInit {
-  gameService: GameService;
+  GameStatus = GameStatus;
 
-  constructor(gameService: GameService) {
-    this.gameService = gameService;
-  }
+  constructor(public gameService: GameService) {}
 
   endGame() {
     Object.assign(this.gameService, new GameService());

@@ -70,6 +70,9 @@ export class AddBlock extends UndoableCommand {
     }
 
     this.gameService.game.score = this.gameService.game.score + scoreAdded;
+
+    // check if the game is finished
+    this.gameService.game.ended = this.gameService.gameEnded();
   }
   public undo(): void {
     Object.assign(this.gameService, this.gameServiceSnapshot);

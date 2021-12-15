@@ -11,13 +11,21 @@ import { GameService } from 'src/app/service/game.service';
 })
 export class RegisterComponent implements OnInit {
   maps: Array<String> = [];
-  gameService: GameService;
 
-  constructor(httpClient: HttpClient, gameService: GameService) {
-    this.gameService = gameService;
+  constructor(
+    httpClient: HttpClient,
+    public gameService: GameService,
+    private router: Router
+  ) {
     httpClient
       .get<Array<String>>('/api/map/availableMaps')
       .subscribe((maps) => (this.maps = maps));
+  }
+
+  play() {
+    if (this.gameService.player.name) {
+      this.router.navigateByUrl('/game');
+    }
   }
 
   ngOnInit(): void {}

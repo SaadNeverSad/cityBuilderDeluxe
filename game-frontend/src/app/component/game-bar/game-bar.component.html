@@ -1,6 +1,8 @@
 <div class="game-bar">
   <div>
-    <button routerLink="/">End Game</button>
+    <button (click)="gameService.game.ended = GameStatus.EndedBySurrender">
+      End Game
+    </button>
     <button ioUndo>Undo</button>
     <button ioRedo>Redo</button>
   </div>

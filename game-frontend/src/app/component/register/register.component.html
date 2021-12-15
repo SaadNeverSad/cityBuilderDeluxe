@@ -14,7 +14,7 @@
         </option>
         <option *ngFor="let map of maps" [value]="map">{{ map }}</option>
       </select>
-      <button routerLink="/game" type="button">Play</button>
+      <button (click)="play()" type="button">Play</button>
     </form>
   </div>
 </body>
