@@ -12,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.IOException;
@@ -58,6 +59,21 @@ public class MapResource {
     }
 
     /**
+     * Deletes a specific map by its name.
+     * 
+     * @param name The name of the map
+     */
+    @DELETE
+    @Path("{name}")
+    public void deleteMap(@PathParam("name") final String name) throws UnkownMapException {
+        final boolean mapRemoved = this.maps.removeIf(map -> map.getName().equals(name));
+
+        if (!mapRemoved) {
+            throw new UnkownMapException(name);
+        }
+    }
+
+    /**
      * Creates a new, randomly generated map.
      * 
      * @return the map created.
@@ -92,7 +108,7 @@ public class MapResource {
             try {
                 return mapper.readValue(new File(mapDir, "map.json"), Map.class);
             } catch (Exception e) {
-                System.err.println("Error when reading map or its score in " + mapDir + ": " + e);
+                System.err.println("Error when reading map in " + mapDir + ": " + e);
                 return null;
             }
         })
@@ -112,7 +128,7 @@ public class MapResource {
             Files.createDirectories(Paths.get(mapDirectory));
             // write the map as a json file
             mapper.writeValue(new File(mapDirectory + "/map.json"), map);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Failed to save a map to its directory: " + e);
         }
     }
@@ -148,7 +164,7 @@ public class MapResource {
     public void postScore(@PathParam("name") final String name, final Score score) throws UnkownMapException {
         final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst()
                 .orElseThrow(() -> new UnkownMapException(name));
-        map.getScores().add(score);
+        map.addScore(score);
         saveMap(map);
     }
 }

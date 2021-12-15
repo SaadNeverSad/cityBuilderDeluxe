@@ -3,7 +3,6 @@ package game.model;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 @XmlRootElement
 public class Score {
 
@@ -11,17 +10,21 @@ public class Score {
     private int score;
 
     @XmlElement
-    private Player player;
+    private String playerName;
 
     Score() {
     }
 
-    Score(final Player player, final int score) {
-        this.player = player;
+    Score(final String playerName, final int score) {
+        this.playerName = playerName;
         this.score = score;
     }
 
     public int getScore() {
         return this.score;
+    }
+
+    public String getPlayerName() {
+        return this.playerName;
     }
 }

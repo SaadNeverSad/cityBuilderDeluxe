@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AnonCmd, PartialPointBinder } from 'interacto';
 import { AddBlock } from 'src/app/command/AddBlock';
 import { Block, BlockKind } from 'src/app/model/block';
@@ -19,7 +20,18 @@ export class MapComponent implements OnInit {
   // if no tile is hovered, this is null.
   hovered: [number, number] | null = null;
 
-  constructor(public gameService: GameService, httpClient: HttpClient) {
+  constructor(
+    public gameService: GameService,
+    httpClient: HttpClient,
+    router: Router
+  ) {
+    // if the player name is empty, then the user probably directly accessed
+    // "/game" and has not choosen a map yet.
+    if (gameService.player.name === '') {
+      router.navigateByUrl('/');
+      return;
+    }
+
     let apiCall;
     // ask the backend to create a random map
     if (gameService.game.map.name === 'rand') {
@@ -43,6 +55,8 @@ export class MapComponent implements OnInit {
           gameService.game.map.tiles[x][y] = tile;
         }
       }
+
+      gameService.game.map.name = map.name;
     });
   }
 

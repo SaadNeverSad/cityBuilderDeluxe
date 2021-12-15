@@ -1,26 +1,20 @@
 package game.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@XmlRootElement
-@Produces(MediaType.APPLICATION_JSON)
 public final class Map {
-
-    @XmlElement
     private String name;
-
-    @XmlElement
     private String tiles[][];
 
-    @XmlElement
+    @JsonIgnore
     private List<Score> scores;
 
     private Map() {
@@ -35,16 +29,30 @@ public final class Map {
     private static String randomNames[] = { "good", "map", "bad", "grass", "water", "tree", "java", "angular", "sunny",
             "rainy", "cloudy", "sad", "pain" };
 
-    public void addScore(final Score s) {
-        this.scores.add(s);
+    /**
+     * Adds a score to this map, if it's the player best score.
+     * 
+     * @param score
+     */
+    public void addScore(final Score score) {
+        final Optional<Score> previousScore = this.scores.stream()
+                .filter(previous -> previous.getPlayerName().equals(score.getPlayerName())).findAny();
+
+        if (previousScore.isEmpty()) {
+            this.scores.add(score);
+        } else if (previousScore.get().getScore() < score.getScore()) {
+            this.scores.remove(previousScore.get());
+            this.scores.add(score);
+        }
     }
 
     public List<Score> getScores() {
         return this.scores;
     }
 
-    public String[][] getTiles() {
-        return this.tiles;
+    // this is just to make spotbugs happy
+    public List<String[]> getTiles() {
+        return Collections.unmodifiableList(Arrays.asList(this.tiles));
     }
 
     public static Map generateRandomMap() {

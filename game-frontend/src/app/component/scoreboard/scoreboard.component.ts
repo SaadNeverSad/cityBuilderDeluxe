@@ -7,6 +7,8 @@ import {
   transition,
 } from '@angular/animations';
 import { GameService } from 'src/app/service/game.service';
+import { HttpClient } from '@angular/common/http';
+import { BackendScore } from 'src/app/model/score';
 
 @Component({
   selector: 'app-scoreboard',
@@ -29,7 +31,15 @@ import { GameService } from 'src/app/service/game.service';
   ],
 })
 export class ScoreboardComponent implements OnInit {
-  constructor(public gameService: GameService) {}
+  bestScores: Array<BackendScore> = [];
+
+  constructor(public gameService: GameService, httpClient: HttpClient) {
+    httpClient
+      .get<Array<BackendScore>>(
+        '/api/map/' + gameService.game.map.name + '/bestScores'
+      )
+      .subscribe((bestScores) => (this.bestScores = bestScores));
+  }
 
   ngOnInit(): void {}
 }
