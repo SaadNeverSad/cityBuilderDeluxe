@@ -3,12 +3,19 @@
   class="popup"
 >
   <h1>Best scores</h1>
-  <h2 *ngFor="let score of bestScores; let i = index">
-    {{ i + 1 }}. {{ bestScores[i].playerName }} ({{
-      bestScores[i].score
-    }}
-    points)
-  </h2>
+  <table id="customers">
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Score</th>
+    </tr>  
+  
+  <tr *ngFor="let score of bestScores; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{bestScores[i].playerName }}</td> 
+    <td>{{bestScores[i].score}} points</td>
+  </tr>
+  </table>
   <button (click)="gameService.game.map.scoreboard.open = false">Close</button>
 </div>
 
