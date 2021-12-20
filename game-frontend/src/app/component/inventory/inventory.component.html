@@ -1,42 +1,11 @@
 <div class="inventory">
   <span
+    *ngFor="let block of Object.values(BlockKind)"
     class="block-container"
-    [class.block-container-outline]="
-      gameService.player.selectedBlock === BlockKind.House
-    "
-    [ioClick]="selectHouse"
+    [class.block-container-outline]="gameService.player.selectedBlock === block"
+    (click)="selectBlock(block)"
   >
-    <div class="badge">{{ gameService.player.inventory.houses }}</div>
-    <img src="assets/house.svg" alt="house" class="tile" />
-  </span>
-  <span
-    class="block-container"
-    [class.block-container-outline]="
-      gameService.player.selectedBlock === BlockKind.WindTurbine
-    "
-    [ioClick]="selectWindTurbine"
-  >
-    <div class="badge">{{ gameService.player.inventory.windTurbines }}</div>
-    <img src="assets/wind-turbine.svg" alt="wind turbine" class="tile" />
-  </span>
-  <span
-    class="block-container"
-    [class.block-container-outline]="
-      gameService.player.selectedBlock === BlockKind.Circus
-    "
-    [ioClick]="selectCircus"
-  >
-    <div class="badge">{{ gameService.player.inventory.circuses }}</div>
-    <img src="assets/circus.svg" alt="circus" class="tile" />
-  </span>
-  <span
-    class="block-container"
-    [class.block-container-outline]="
-      gameService.player.selectedBlock === BlockKind.Fountain
-    "
-    [ioClick]="selectFountain"
-  >
-    <div class="badge">{{ gameService.player.inventory.fountains }}</div>
-    <img src="assets/fountain.svg" alt="fountain" class="tile" />
+    <div class="badge">{{ gameService.player.inventory.blocks[block] }}</div>
+    <img [src]="Block.assetPath(block)" alt="block" class="tile" />
   </span>
 </div>

@@ -1,4 +1,5 @@
 body {
+  margin: 0;
   font-family: Arial;
 }
 
@@ -54,6 +55,7 @@ body {
 }
 
 button {
+  cursor: pointer;
   display: relative;
   line-height: 28pt;
   padding: 0 10px;

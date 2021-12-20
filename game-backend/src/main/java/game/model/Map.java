@@ -14,12 +14,11 @@ public final class Map {
     private String name;
     private String tiles[][];
 
-    @JsonIgnore
-    private List<Score> scores;
+    private List<Replay> replays;
 
     private Map() {
         this.tiles = new String[10][10];
-        this.scores = new ArrayList<>();
+        this.replays = new ArrayList<>();
     }
 
     public String getName() {
@@ -27,27 +26,23 @@ public final class Map {
     }
 
     private static String randomNames[] = { "good", "map", "bad", "grass", "water", "tree", "java", "angular", "sunny",
-            "rainy", "cloudy", "sad", "pain" };
+            "rainy", "cloudy", "sad", "pain", "help" };
 
-    /**
-     * Adds a score to this map, if it's the player best score.
-     * 
-     * @param score
-     */
-    public void addScore(final Score score) {
-        final Optional<Score> previousScore = this.scores.stream()
-                .filter(previous -> previous.getPlayerName().equals(score.getPlayerName())).findAny();
+    public void addReplay(final Replay replay) {
+        final Optional<Replay> previousScore = this.replays.stream()
+                .filter(previous -> previous.getPlayerName().equals(replay.getPlayerName())).findAny();
 
         if (previousScore.isEmpty()) {
-            this.scores.add(score);
-        } else if (previousScore.get().getScore() < score.getScore()) {
-            this.scores.remove(previousScore.get());
-            this.scores.add(score);
+            this.replays.add(replay);
+        } else if (previousScore.get().getScore() < replay.getScore()) {
+            this.replays.remove(previousScore.get());
+            this.replays.add(replay);
         }
     }
 
-    public List<Score> getScores() {
-        return this.scores;
+    @JsonIgnore
+    public List<Replay> getReplays() {
+        return this.replays;
     }
 
     // this is just to make spotbugs happy

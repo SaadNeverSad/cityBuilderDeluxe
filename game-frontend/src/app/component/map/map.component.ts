@@ -6,6 +6,7 @@ import { AddBlock } from 'src/app/command/AddBlock';
 import { Block, BlockKind } from 'src/app/model/block';
 import { GrassTile } from 'src/app/model/grass-tile';
 import { BackendMap } from 'src/app/model/map';
+import { Move } from 'src/app/model/replay';
 import { TreeTile } from 'src/app/model/tree-tile';
 import { WaterTile } from 'src/app/model/water-tile';
 import { GameService } from 'src/app/service/game.service';
@@ -19,6 +20,7 @@ export class MapComponent implements OnInit {
   // the hovered tile coordinates, as a tuple.
   // if no tile is hovered, this is null.
   hovered: [number, number] | null = null;
+  Block = Block;
 
   constructor(
     public gameService: GameService,
@@ -28,7 +30,7 @@ export class MapComponent implements OnInit {
     // if the player name is empty, then the user probably directly accessed
     // "/game" and has not choosen a map yet.
     if (gameService.player.name === '') {
-      router.navigateByUrl('/');
+      router.navigateByUrl('/register');
       return;
     }
 
@@ -57,11 +59,16 @@ export class MapComponent implements OnInit {
       }
 
       gameService.game.map.name = map.name;
+      gameService.game.map.isLoaded.next();
     });
   }
 
   ngOnInit(): void {}
 
+  /**
+   * Handles a click to add a block.
+   * @param binder the binder
+   */
   public addBlock(binder: PartialPointBinder): void {
     binder
       .toProduce((i) => {
@@ -72,22 +79,18 @@ export class MapComponent implements OnInit {
         let tile = this.gameService.game.map.tiles[x][y];
         let player = this.gameService.player;
 
+        // if this is a replay prevent the user from placing a block
+        if (this.gameService.isReplay) {
+          return new AnonCmd(() => {});
+        }
+
         // we can't place a block if it's not a grass tile
         if (!(tile instanceof GrassTile)) {
           return new AnonCmd(() => {});
         }
 
         // make sure the block count allows to place this block
-        if (
-          (player.selectedBlock === BlockKind.House &&
-            player.inventory.houses === 0) ||
-          (player.selectedBlock === BlockKind.WindTurbine &&
-            player.inventory.windTurbines === 0) ||
-          (player.selectedBlock === BlockKind.Circus &&
-            player.inventory.circuses === 0) ||
-          (player.selectedBlock === BlockKind.Fountain &&
-            player.inventory.fountains === 0)
-        ) {
+        if (player.inventory.blocks[player.selectedBlock] === 0) {
           return new AnonCmd(() => {});
         }
 
@@ -98,6 +101,12 @@ export class MapComponent implements OnInit {
 
         let scoreAdded = this.getScoreAdded();
         this.hovered = null;
+
+        // register the move in the replay
+        this.gameService.game.replay.addMove(
+          new Move(this.gameService.player.selectedBlock, x, y, scoreAdded)
+        );
+
         return new AddBlock(x, y, scoreAdded, this.gameService);
       })
       .when((i) => i.button === 0)
@@ -265,46 +274,4 @@ export class MapComponent implements OnInit {
 
     return false;
   }
-
-  // /**
-  //  * Gets the bonuses given by the adjacent tiles of the block
-  //  * trying to be set, for a set of coordinates.
-  //  * @param block The block trying to be set
-  //  * @param x X coordinate
-  //  * @param y Y coordinate
-  //  * @returns A two-dimensionnal array of adjacent bonuses.
-  //  * Returns null instead of the bonus if there is no adjacent tile at these coordinates.
-  //  */
-  // public (
-  //   block: Block,
-  //   x: number,
-  //   y: number
-  // ): Array<Array<number | null>> {
-  //   let bonuses = new Array(2 * block.radius + 1);
-  //   for (let i = 0; i < bonuses.length; i++) {
-  //     bonuses[i] = new Array(2 * block.radius + 1);
-  //   }
-
-  //   // count the adjacent tiles / blocks
-  //   for (let i = x - block.radius; i < x + block.radius; i++) {
-  //     for (let j = y - block.radius; j < y + block.radius; j++) {
-  //       // don't calculate the bonus on the tile we're setting the block
-  //       if (x == i && y == j) {
-  //         continue;
-  //       }
-
-  //       let tile = this.gameService.game.map.tiles[x][y];
-
-  //       // if the tile is out of the game map, the bonus is null
-  //       if (tile === undefined) {
-  //         bonuses[i][j] = null;
-  //         continue;
-  //       }
-
-  //       bonuses[i][j] = this.getBonus(tile, block.kind);
-  //     }
-  //   }
-
-  //   return bonuses;
-  // }
 }

@@ -16,9 +16,13 @@ import { ScoreboardComponent } from './component/scoreboard/scoreboard.component
 import { InventoryComponent } from './component/inventory/inventory.component';
 import { GameComponent } from './component/game/game.component';
 import { EndComponent } from './component/end/end.component';
+import { ReplayComponent } from './component/replay/replay.component';
+import { ViewComponent } from './component/view/view.component';
+import { ReplayCommandsComponent } from './component/replay-commands/replay-commands.component';
 
 @NgModule({
   declarations: [
+    ReplayComponent,
     AppComponent,
     MapComponent,
     InventoryComponent,
@@ -28,6 +32,8 @@ import { EndComponent } from './component/end/end.component';
     RegisterComponent,
     GameComponent,
     EndComponent,
+    ViewComponent,
+    ReplayCommandsComponent,
   ],
   imports: [
     FormsModule,

@@ -7,10 +7,7 @@ import { GameService } from 'src/app/service/game.service';
   styleUrls: ['./score.component.css'],
 })
 export class ScoreComponent implements OnInit {
-  gameService: GameService;
-  constructor(gameService: GameService) {
-    this.gameService = gameService;
-  }
+  constructor(public gameService: GameService) {}
 
   getScoreTitle(): string {
     return (

@@ -12,7 +12,9 @@
           [class.selectable]="gameService.game.map.tiles[x][y].selectable"
           [style.cursor]="
             gameService.game.map.tiles[x][y].selectable
-              ? 'url(' + gameService.player.selectedBlock + ') 58 100, pointer'
+              ? 'url(' +
+                Block.assetPath(gameService.player.selectedBlock) +
+                ') 58 100, pointer'
               : 'not-allowed'
           "
           [ioClick]="addBlock"

@@ -8,10 +8,11 @@ import {
 } from '@angular/animations';
 import { GameService } from 'src/app/service/game.service';
 import { Router } from '@angular/router';
-import { Game, GameStatus } from 'src/app/model/game';
+import { GameStatus } from 'src/app/model/game';
 import { UndoHistory } from 'interacto';
 import { HttpClient } from '@angular/common/http';
 import { BackendScore } from 'src/app/model/score';
+import { Replay } from 'src/app/model/replay';
 
 @Component({
   selector: 'app-end',
@@ -49,22 +50,24 @@ export class EndComponent implements OnInit {
    * Returns to the menu and sends the game to the backend.
    */
   returnToMenu() {
-    // post the score
+    // post the replay
+    this.gameService.game.replay.playerName = this.gameService.player.name;
+    this.gameService.game.replay.score = this.gameService.game.score;
+
     this.httpClient
-      .post<BackendScore>(
-        '/api/map/' + this.gameService.game.map.name + '/score',
-        new BackendScore(
-          this.gameService.player.name,
-          this.gameService.game.score
-        )
+      .post<Replay>(
+        '/api/map/' + this.gameService.game.map.name + '/replay',
+        this.gameService.game.replay
       )
-      .subscribe((ret) => console.log(ret));
+      .subscribe();
 
     // then erase the game
+    let mapName = this.gameService.game.map.name;
     let playerName = this.gameService.player.name;
     Object.assign(this.gameService, new GameService());
     this.gameService.player.name = playerName;
+    this.gameService.game.map.name = mapName;
     this.undoHistory.clear();
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/register');
   }
 }

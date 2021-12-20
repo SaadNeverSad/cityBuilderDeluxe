@@ -22,6 +22,12 @@ export class RegisterComponent implements OnInit {
       .subscribe((maps) => (this.maps = maps));
   }
 
+  showReplays() {
+    if (this.gameService.game.map.name !== 'rand') {
+      this.router.navigate(['replays', this.gameService.game.map.name]);
+    }
+  }
+
   play() {
     if (this.gameService.player.name) {
       this.router.navigateByUrl('/game');

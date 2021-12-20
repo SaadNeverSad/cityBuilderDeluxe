@@ -13,6 +13,6 @@ export class GrassTile extends Tile {
   set(kind: BlockKind) {
     this.selectable = false;
     this.block = new Block(kind);
-    this.src = kind;
+    this.src = Block.assetPath(kind);
   }
 }

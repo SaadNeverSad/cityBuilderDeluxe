@@ -3,6 +3,7 @@ import { GrassTile } from './grass-tile';
 import { WaterTile } from './water-tile';
 import { TreeTile } from './tree-tile';
 import { ScoreBoard } from './score-board';
+import { Subject } from 'rxjs';
 
 export class BackendMap {
   name: String = '';
@@ -10,6 +11,7 @@ export class BackendMap {
 }
 
 export default class Map {
+  isLoaded: Subject<undefined> = new Subject();
   name: String;
   scoreboard: ScoreBoard;
   tiles: Tile[][];

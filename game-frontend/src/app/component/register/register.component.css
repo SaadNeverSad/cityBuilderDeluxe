@@ -1,103 +1,103 @@
 body {
-    margin: 0;
-    padding: 0;
-  }
- 
-  body {
-    background: url("https://www.fun-academy.fr/wp-content/uploads/2021/02/foundation-paths-city-builder-header.jpg") center center no-repeat;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-  }
-  
-  .register {
-    background: #f8f4e5;
-    padding: 50px 100px;
-    border: 2px solid black;
-    box-shadow: 5px 5px 1px #CD853F, 5px 5px 1px 2px black;
-  }
-  
-  input {
-    display: block;
-    width: 100%;
-    font-size: 14pt;
-    line-height: 28pt;
-    font-family: "Fjalla One";
-    margin-bottom: 28pt;
-    border: none;
-    border-bottom: 5px solid black;
-    background: #f8f4e5;
-    min-width: 250px;
-    padding-left: 5px;
-    outline: none;
-    color: black;
-  }
-  
-  input:focus {
-    border-bottom: 5px solid #ffa580;
-  }
-  
-  button {
-    display: block;
-    margin: 0 auto;
-    line-height: 28pt;
-    padding: 0 20px;
-    background: #CD853F;
-    letter-spacing: 2px;
-    transition: 0.2s all ease-in-out;
-    outline: none;
-    border: 1px solid black;
-    box-shadow: 3px 3px 1px #4a690d, 3px 3px 1px 1px black;
-    font-family: cursive;
-    font-weight: bold;
-  }
-  button:hover {
-    background: black;
-    color: white;
-    border: 1px solid black;
-  }
-  
-  ::selection {
-    background: #ffc8ff;
-  }
-  
-  
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus {
-    border-bottom: 5px solid #95a4ff;
-    -webkit-text-fill-color: #2A293E;
-    -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-  select {
-    background: #f8f4e5;
-    border: none;
-    padding: 0 1em 0 0;
-    margin: 0;
-    width: 100%;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: inherit;
-    line-height: inherit;
-    display: block;
-    width: 100%;
-    font-size: 14pt;
-    line-height: 28pt;
-    font-family: "Fjalla One";
-    margin-bottom: 28pt;
-    border: none;
-    border-bottom: 5px solid black;
-    background: #f8f4e5;
-    min-width: 250px;
-    padding-left: 5px;
-    outline: none;
-    color: black;
-  }
-  select:required:invalid {
-    color: gray;
-  }
-  
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("/assets/city-builder.jpg") center center no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.register {
+  background: #f8f4e5;
+  padding: 50px 100px;
+  border: 2px solid black;
+  box-shadow: 5px 5px 1px #cd853f, 5px 5px 1px 2px black;
+}
+
+input {
+  display: block;
+  width: 100%;
+  font-size: 14pt;
+  line-height: 28pt;
+  /* font-family: "Fjalla One"; */
+  font-family: cursive;
+  margin-bottom: 28pt;
+  border: none;
+  border-bottom: 5px solid black;
+  background: #f8f4e5;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: black;
+}
+
+input:focus {
+  border-bottom: 5px solid #ffa580;
+}
+
+button {
+  display: inline-block;
+  margin: 0 8px;
+  line-height: 28pt;
+  padding: 0 20px;
+  background: #cd853f;
+  letter-spacing: 2px;
+  transition: 0.2s all ease-in-out;
+  outline: none;
+  border: 1px solid black;
+  box-shadow: 3px 3px 1px #4a690d, 3px 3px 1px 1px black;
+  font-family: cursive;
+  font-weight: bold;
+}
+button:hover {
+  background: black;
+  color: white;
+  border: 1px solid black;
+}
+
+::selection {
+  background: #ffc8ff;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border-bottom: 5px solid #95a4ff;
+  -webkit-text-fill-color: #2a293e;
+  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+select {
+  background: #f8f4e5;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  display: block;
+  width: 100%;
+  font-size: 14pt;
+  line-height: 28pt;
+  /* font-family: "Fjalla One"; */
+  font-family: cursive;
+  margin-bottom: 28pt;
+  border: none;
+  border-bottom: 5px solid black;
+  background: #f8f4e5;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: black;
+}
+select:required:invalid {
+  color: gray;
+}

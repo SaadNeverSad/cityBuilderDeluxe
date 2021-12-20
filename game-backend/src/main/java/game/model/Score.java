@@ -1,21 +1,14 @@
 package game.model;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class Score {
 
-    @XmlElement
     private int score;
-
-    @XmlElement
     private String playerName;
 
     Score() {
     }
 
-    Score(final String playerName, final int score) {
+    public Score(final String playerName, final int score) {
         this.playerName = playerName;
         this.score = score;
     }

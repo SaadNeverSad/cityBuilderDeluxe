@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnonCmd, PartialPointBinder } from 'interacto';
-import { BlockKind } from '../../model/block';
+import { Block, BlockKind } from '../../model/block';
 import { GameService } from '../../service/game.service';
 
 @Component({
@@ -9,12 +9,11 @@ import { GameService } from '../../service/game.service';
   styleUrls: ['./inventory.component.css'],
 })
 export class InventoryComponent implements OnInit {
-  BlockKind: typeof BlockKind = BlockKind;
-  gameService: GameService;
+  Object = Object;
+  Block = Block;
+  BlockKind = BlockKind;
 
-  constructor(gameService: GameService) {
-    this.gameService = gameService;
-  }
+  constructor(public gameService: GameService) {}
 
   public selectHouse(binder: PartialPointBinder): void {
     binder
@@ -59,6 +58,12 @@ export class InventoryComponent implements OnInit {
           )
       )
       .bind();
+  }
+
+  public selectBlock(kind: string) {
+    if (!this.gameService.isReplay) {
+      this.gameService.player.selectedBlock = kind as BlockKind;
+    }
   }
 
   ngOnInit(): void {}

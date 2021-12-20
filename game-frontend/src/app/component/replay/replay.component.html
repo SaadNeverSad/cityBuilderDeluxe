@@ -1,1 +1,7 @@
-<p>replay works!</p>
+<h1>Replays for {{ map }}</h1>
+<p *ngFor="let replay of replays">
+  {{ replay.playerName }} - {{ replay.score }} points
+  <button (click)="view(replay.playerName)">View replay</button>
+</p>
+<p *ngIf="err">Impossible to load the replays. Make sure this map exists.</p>
+<button routerLink="/register">Return to menu</button>

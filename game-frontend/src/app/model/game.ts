@@ -1,4 +1,6 @@
+import * as _ from 'lodash';
 import Map from './map';
+import { Replay } from './replay';
 
 export enum GameStatus {
   NotEnded = '',
@@ -13,4 +15,9 @@ export class Game {
   scoreLimit: number = 10;
   turn: number = 1;
   map: Map = new Map();
+  replay: Replay = new Replay();
+
+  clone(): Game {
+    return _.cloneDeep(this);
+  }
 }

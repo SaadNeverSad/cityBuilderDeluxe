@@ -1,8 +1,8 @@
-import * as _ from 'lodash';
-
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Game, GameStatus } from '../model/game';
 import { Player } from '../model/player';
+import { Replay } from '../model/replay';
 
 @Injectable({
   providedIn: 'root',
@@ -10,30 +10,5 @@ import { Player } from '../model/player';
 export class GameService {
   game: Game = new Game();
   player: Player = new Player();
-
-  clone(): GameService {
-    return _.cloneDeep(this);
-  }
-
-  /**
-   * Checks if the game is ended.
-   * The game ends if the user can't place any block (no space left / no block left)
-   */
-  gameEnded(): GameStatus {
-    // no block left
-    if (this.player.inventory.empty()) {
-      return GameStatus.EndedByEmptyInventory;
-    }
-
-    // no space left
-    for (let row of this.game.map.tiles) {
-      for (let tile of row) {
-        if (tile.selectable) {
-          return GameStatus.NotEnded;
-        }
-      }
-    }
-
-    return GameStatus.EndedByMissingSpace;
-  }
+  isReplay: boolean = false;
 }

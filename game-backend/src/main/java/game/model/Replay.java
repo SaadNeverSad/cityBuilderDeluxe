@@ -1,25 +1,22 @@
 package game.model;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Deque;
+import java.util.Collections;
+import java.util.List;
 
-
-@XmlRootElement
 public class Replay {
+    private String playerName;
+    private int score;
+    private List<Move> moves;
 
-    @XmlElement
-    private Map map;
+    public String getPlayerName() {
+        return this.playerName;
+    }
 
-    @XmlElement
-    private Player player;
+    public int getScore() {
+        return this.score;
+    }
 
-    @XmlElement
-    private Deque<Undoable> pastMoves;
-
-    @XmlElement
-    private Deque<Undoable> nextMoves;
-
-    public Replay() {
+    public List<Move> getMoves() {
+        return Collections.unmodifiableList(this.moves);
     }
 }

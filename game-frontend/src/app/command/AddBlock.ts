@@ -1,7 +1,31 @@
 import { UndoableCommand } from 'interacto';
 import { BlockKind } from '../model/block';
+import { Game, GameStatus } from '../model/game';
 import { GrassTile } from '../model/grass-tile';
+import { Player } from '../model/player';
 import { GameService } from '../service/game.service';
+
+/**
+ * Checks if the game has ended.
+ * The game ends if the user can't place any block (no space left / no block left)
+ */
+function gameEnded(game: Game, player: Player): GameStatus {
+  // no block left
+  if (player.inventory.empty()) {
+    return GameStatus.EndedByEmptyInventory;
+  }
+
+  // no space left
+  for (let row of game.map.tiles) {
+    for (let tile of row) {
+      if (tile.selectable) {
+        return GameStatus.NotEnded;
+      }
+    }
+  }
+
+  return GameStatus.EndedByMissingSpace;
+}
 
 /**
  * Undoable command to place a block on the map.
@@ -9,8 +33,10 @@ import { GameService } from '../service/game.service';
 export class AddBlock extends UndoableCommand {
   x: number;
   y: number;
-  gameService: GameService;
-  gameServiceSnapshot: GameService;
+  game: Game;
+  player: Player;
+  gameSave: Game;
+  playerSave: Player;
   scoreAdded: number;
 
   constructor(
@@ -20,10 +46,12 @@ export class AddBlock extends UndoableCommand {
     gameService: GameService
   ) {
     super();
-    this.gameService = gameService;
+    this.game = gameService.game;
+    this.player = gameService.player;
 
     // make a copy of the game service
-    this.gameServiceSnapshot = this.gameService.clone();
+    this.gameSave = this.game.clone();
+    this.playerSave = this.player.clone();
     this.scoreAdded = scoreAdded;
     this.x = x;
     this.y = y;
@@ -36,46 +64,37 @@ export class AddBlock extends UndoableCommand {
     return 'Add city block';
   }
   public redo(): void {
-    let tile = this.gameService.game.map.tiles[this.x][this.y];
+    let tile = this.game.map.tiles[this.x][this.y];
+
     if (!(tile instanceof GrassTile)) {
       return;
     }
 
-    tile.set(this.gameService.player.selectedBlock);
+    tile.set(this.playerSave.selectedBlock);
 
     // decrement the inventory count
-    let tileKind = tile.block?.kind;
-    if (tileKind === BlockKind.House) {
-      this.gameService.player.inventory.houses--;
-    } else if (tileKind === BlockKind.WindTurbine) {
-      this.gameService.player.inventory.windTurbines--;
-    } else if (tileKind === BlockKind.Circus) {
-      this.gameService.player.inventory.circuses--;
-    } else if (tileKind === BlockKind.Fountain) {
-      this.gameService.player.inventory.fountains--;
-    }
+    this.player.inventory.blocks[this.playerSave.selectedBlock]--;
 
     // check if we need a new turn
     let scoreAdded = this.scoreAdded;
-    while (
-      this.gameService.game.score + scoreAdded >=
-      this.gameService.game.scoreLimit
-    ) {
-      this.gameService.game.turn++;
-      this.gameService.player.inventory.increase();
-      scoreAdded -=
-        this.gameService.game.scoreLimit - this.gameService.game.score;
-      this.gameService.game.score = this.gameService.game.scoreLimit;
-      this.gameService.game.scoreLimit += 10 * this.gameService.game.turn;
+    while (this.game.score + scoreAdded >= this.game.scoreLimit) {
+      this.game.turn++;
+      this.player.inventory.increase();
+      scoreAdded -= this.game.scoreLimit - this.game.score;
+      this.game.score = this.game.scoreLimit;
+      this.game.scoreLimit += 10 * this.game.turn;
     }
 
-    this.gameService.game.score = this.gameService.game.score + scoreAdded;
+    this.game.score = this.game.score + scoreAdded;
 
     // check if the game is finished
-    this.gameService.game.ended = this.gameService.gameEnded();
+    this.game.ended = gameEnded(this.game, this.player);
   }
+
   public undo(): void {
-    Object.assign(this.gameService, this.gameServiceSnapshot);
-    this.gameServiceSnapshot = this.gameService.clone();
+    Object.assign(this.game, this.gameSave);
+    Object.assign(this.player, this.playerSave);
+    this.gameSave = this.game.clone();
+    this.playerSave = this.player.clone();
   }
 }

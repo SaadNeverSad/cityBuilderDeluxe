@@ -7,7 +7,6 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import game.resource.MapResource;
-import game.resource.ReplayResource;
 
 public final class Main {
 	private Main() {
@@ -15,22 +14,16 @@ public final class Main {
 	}
 
 	/**
-	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
+	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
+	 * application.
+	 * 
 	 * @return Grizzly HTTP server.
 	 * @param httpAddress
 	 */
 	public static void startServer(final String httpAddress) {
 		final ResourceConfig rc = new ResourceConfig() // GameResource.class)
-			.register(JacksonFeature.class)
-			.register(ReplayResource.class)
-			.register(MapResource.class);
-				// requires to inject a GameData into your GameResource
-//			.register(new AbstractBinder() {
-//				@Override
-//				protected void configure() {
-//					bind(GameData.class).to(GameData.class);
-//				}
-//			});
+				.register(JacksonFeature.class)
+				.register(MapResource.class);
 
 		GrizzlyHttpServerFactory.createHttpServer(URI.create(httpAddress), rc);
 	}
@@ -39,7 +32,8 @@ public final class Main {
 	 * Takes as argument the HTTP address of the server.
 	 * Should be http://localhost:4444/ for testing purpose.
 	 * http://0.0.0.0:4444/ for a Docker image
-	 * In such cases the swagger UI is available http://localhost:4444/swag/index.html (localhost or 0.0.0.0)
+	 * In such cases the swagger UI is available
+	 * http://localhost:4444/swag/index.html (localhost or 0.0.0.0)
 	 */
 	public static void main(final String[] args) throws InterruptedException {
 		// final String httpAddress = args[0];
@@ -48,4 +42,3 @@ public final class Main {
 		Thread.currentThread().join();
 	}
 }
-

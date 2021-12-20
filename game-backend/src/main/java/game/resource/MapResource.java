@@ -1,8 +1,11 @@
 package game.resource;
 
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import game.exceptions.UnkownMapException;
+import game.exceptions.UnknownMapException;
+import game.exceptions.UnknownPlayerException;
 import game.model.Map;
+import game.model.Replay;
 import game.model.Score;
 
 import javax.inject.Singleton;
@@ -65,12 +68,27 @@ public class MapResource {
      */
     @DELETE
     @Path("{name}")
-    public void deleteMap(@PathParam("name") final String name) throws UnkownMapException {
+    public void deleteMap(@PathParam("name") final String name) throws UnknownMapException {
         final boolean mapRemoved = this.maps.removeIf(map -> map.getName().equals(name));
 
         if (!mapRemoved) {
-            throw new UnkownMapException(name);
+            throw new UnknownMapException(name);
         }
+    }
+
+    /**
+     * Gets the replays of this specific map, ordered by best scores.
+     * 
+     * @param name the name of the map
+     * @return the ordered list of replays
+     */
+    @GET
+    @Path("{name}/replays")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Replay> getReplays(@PathParam("name") final String name) {
+        return this.maps.stream().filter(m -> m.getName().equals(name)).findFirst().orElseThrow().getReplays().stream()
+                .sorted(Comparator.comparing(Replay::getScore).reversed())
+                .collect(Collectors.toList());
     }
 
     /**
@@ -90,13 +108,13 @@ public class MapResource {
     }
 
     /**
-     * Loads all stored maps and their scores.
+     * Loads all stored maps and their replays / scores.
      * 
      * @return the list of maps.
      */
     private List<Map> loadMaps() {
         final File mapsDir = new File("maps");
-        final ObjectMapper mapper = new ObjectMapper();
+        final ObjectMapper mapper = new ObjectMapper().disable(MapperFeature.USE_ANNOTATIONS);
 
         try {
             Files.createDirectories(Paths.get("maps"));
@@ -117,10 +135,12 @@ public class MapResource {
     }
 
     /**
-     * Saves a map to a json file.
+     * Saves a map with its replays / scores to a JSON file.
+     * 
+     * @param map the map to save
      */
     private void saveMap(final Map map) {
-        final ObjectMapper mapper = new ObjectMapper();
+        final ObjectMapper mapper = new ObjectMapper().disable(MapperFeature.USE_ANNOTATIONS);
         final String mapDirectory = "maps/" + map.getName();
 
         try {
@@ -138,33 +158,57 @@ public class MapResource {
      * 
      * @param name the name of the map
      * @return the 5 best scores.
-     * @throws UnkownMapException
+     * @throws UnknownMapException
      */
     @GET
     @Path("{name}/bestScores")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Score> getBestScores(@PathParam("name") final String name) throws UnkownMapException {
+    public List<Score> getBestScores(@PathParam("name") final String name) throws UnknownMapException {
         final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst()
-                .orElseThrow(() -> new UnkownMapException(name));
-        return map.getScores().stream().sorted(Comparator.comparing(Score::getScore).reversed()).limit(5)
+                .orElseThrow(() -> new UnknownMapException(name));
+
+        return map.getReplays().stream().map(replay -> new Score(replay.getPlayerName(), replay.getScore()))
+                .sorted(Comparator.comparing(Score::getScore).reversed()).limit(5)
                 .collect(Collectors.toList());
     }
 
     /**
-     * Adds a score for the given map.
+     * Adds a replay and a score for the given map, if the score is better than the
+     * previous best score of this player.
      * 
-     * @param name  the name of the map
-     * @param score the score to add
-     * @throws UnkownMapException
+     * @param name   the name of the map
+     * @param replay the replay to add
+     * @throws UnknownMapException
      */
     @POST
-    @Path("{name}/score")
+    @Path("{name}/replay")
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces(MediaType.APPLICATION_JSON)
-    public void postScore(@PathParam("name") final String name, final Score score) throws UnkownMapException {
-        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst()
-                .orElseThrow(() -> new UnkownMapException(name));
-        map.addScore(score);
+    public void postReplay(@PathParam("name") final String name, final Replay replay) throws UnknownMapException {
+        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findAny()
+                .orElseThrow(() -> new UnknownMapException(name));
+        map.addReplay(replay);
         saveMap(map);
+    }
+
+    /**
+     * Gets the replay of the best game of a player.
+     * 
+     * @param name   the name of the map of the replay
+     * @param player the name of the player
+     * @return the replay.
+     * @throws UnknownMapException
+     * @throws UnknownPlayerException
+     */
+    @GET
+    @Path("{name}/replay/{player}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Replay getReplay(@PathParam("name") final String name, @PathParam("player") final String player)
+            throws UnknownMapException, UnknownPlayerException {
+        final Map map = this.maps.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findAny()
+                .orElseThrow(() -> new UnknownMapException(name));
+
+        return map.getReplays().stream().filter(r -> r.getPlayerName().equalsIgnoreCase(player)).findAny()
+                .orElseThrow(() -> new UnknownPlayerException(player));
     }
 }
