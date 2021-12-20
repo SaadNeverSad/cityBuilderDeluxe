@@ -1,14 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { ActivatedRoute, Router } from '@angular/router';
 import { Replay } from 'src/app/model/replay';
 import { GameService } from 'src/app/service/game.service';
-=======
-import { UndoHistory } from 'interacto';
-import { AddBlock } from 'src/app/command/AddBlock';
-import { Undoable } from 'src/app/model/undoable';
->>>>>>> 84fda3f845ceb58efde9c471505caafd375a0b09
 
 @Component({
   selector: 'app-replay',
