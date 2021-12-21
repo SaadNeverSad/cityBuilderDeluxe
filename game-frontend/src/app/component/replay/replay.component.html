@@ -1,7 +1,20 @@
-<h1>Replays for {{ map }}</h1>
-<p *ngFor="let replay of replays">
-  {{ replay.playerName }} - {{ replay.score }} points
-  <button (click)="view(replay.playerName)">View replay</button>
-</p>
-<p *ngIf="err">Impossible to load the replays. Make sure this map exists.</p>
-<button routerLink="/register">Return to menu</button>
+<body>
+  <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+  <h1><i class="em em-arrows_counterclockwise" aria-role="presentation" aria-label="ANTICLOCKWISE DOWNWARDS AND UPWARDS OPEN CIRCLE ARROWS"></i> Replays for {{ map }} <i class="em em-arrows_counterclockwise" aria-role="presentation" aria-label="ANTICLOCKWISE DOWNWARDS AND UPWARDS OPEN CIRCLE ARROWS"></i></h1>
+  <table id="replays">
+    <tr>
+      <th><i class="em em-video_game" aria-role="presentation" aria-label="VIDEO GAME"></i> Player</th>
+      <th><i class="em em-first_place_medal" aria-role="presentation" aria-label="FIRST PLACE MEDAL"></i> Score</th>
+      <th><i class="em em-repeat" aria-role="presentation" aria-label="CLOCKWISE RIGHTWARDS AND LEFTWARDS OPEN CIRCLE ARROWS"></i> Replay</th>
+    </tr>  
+  <tr *ngFor="let replay of replays">
+    <td>{{ replay.playerName }}</td>
+    <td>{{ replay.score }} points</td>
+    <button class="align" (click)="view(replay.playerName)">View</button>
+  </tr>
+  </table>
+  <p *ngIf="err">Impossible to load the replays. Make sure this map exists.</p>
+  <button class="align" routerLink="/register"><i class="em em-back" aria-role="presentation" aria-label="BACK WITH LEFTWARDS ARROW ABOVE"></i> Return to menu</button>
+  
+
+</body>

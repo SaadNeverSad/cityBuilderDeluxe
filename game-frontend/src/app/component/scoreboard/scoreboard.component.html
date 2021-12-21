@@ -15,8 +15,8 @@
     <td>{{bestScores[i].playerName }}</td> 
     <td>{{bestScores[i].score}} points</td>
   </tr>
-  </table>
-  <button (click)="gameService.game.map.scoreboard.open = false">Close</button>
+</table>
+  <button id="close_btn" (click)="gameService.game.map.scoreboard.open = false">Close</button>
 </div>
 
 <div

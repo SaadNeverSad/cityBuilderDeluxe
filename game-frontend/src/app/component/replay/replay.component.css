@@ -1,0 +1,44 @@
+h1{
+    font-family: cursive;
+    text-align: center;
+}
+#replays {
+    font-family: cursive;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  p,#replays td, #replays th {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-family: cursive;
+    text-align: center;
+  }
+  
+  #replays tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #replays tr:hover {background-color: #ddd;}
+  
+  #replays th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color:#CD853F;
+    color: white;  
+  }
+  table{
+    /* haut | droit | bas | gauche */
+    margin: 60px 0 60px 0;
+  }
+  .align{
+    display: block;
+    margin: auto;
+    padding: auto;
+  }
+
+
+  body{
+    height: 100%;
+    background-size: cover;
+        
+  }

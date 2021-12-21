@@ -1,5 +1,5 @@
 #customers {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: cursive;
     border-collapse: collapse;
     width: 100%;
   }
@@ -24,6 +24,17 @@
     
   }
   table{
-      /* haut | droit | bas | gauche */
+    /* haut | droit | bas | gauche */
     margin: 0 0 20px 0;
   }
+  .popup{
+    overflow-y: auto;
+    min-height:400px;
+     max-height:450px;
+  }
+
+  #close_btn {
+    position: absolute; 
+    bottom:10px;
+    right:10px    
+}
