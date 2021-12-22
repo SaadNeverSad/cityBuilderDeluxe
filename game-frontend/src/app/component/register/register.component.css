@@ -8,16 +8,18 @@ body {
   background-size: cover;
   width: 100vw;
   height: 100vh;
-  display: grid;
-  align-items: center;
-  justify-items: center;
+  display: grid;  
+  
 }
-
 .register {
   background: #f8f4e5;
   padding: 50px 100px;
   border: 2px solid black;
   box-shadow: 5px 5px 1px #cd853f, 5px 5px 1px 2px black;
+  position: absolute;
+  left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
 }
 
 input {
@@ -100,4 +102,9 @@ select {
 }
 select:required:invalid {
   color: gray;
+}
+h1{
+  font-family: cursive;
+  text-align: center;
+  color: #864b10;
 }

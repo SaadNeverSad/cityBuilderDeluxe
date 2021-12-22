@@ -1,3 +1,5 @@
+<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+
 <div
   [@slide]="gameService.game.map.scoreboard.open ? 'show' : 'hide'"
   class="popup"
@@ -5,18 +7,18 @@
   <h1>Best scores</h1>
   <table id="customers">
     <tr>
-      <th>Rank</th>
-      <th>Player</th>
-      <th>Score</th>
+      <th><i class="em em-first_place_medal" aria-role="presentation" aria-label="FIRST PLACE MEDAL"></i> Rank</th>
+      <th><i class="em em-video_game" aria-role="presentation" aria-label="VIDEO GAME"></i> Player</th>
+      <th><i class="em em-dart" aria-role="presentation" aria-label="DIRECT HIT"></i> Score</th>
     </tr>  
   
   <tr *ngFor="let score of bestScores; let i = index">
     <td>{{ i + 1 }}</td>
-    <td>{{bestScores[i].playerName }}</td> 
-    <td>{{bestScores[i].score}} points</td>
+    <td> {{bestScores[i].playerName }}</td> 
+    <td> {{bestScores[i].score}} points</td>
   </tr>
 </table>
-  <button id="close_btn" (click)="gameService.game.map.scoreboard.open = false">Close</button>
+  <button id="close_btn" (click)="gameService.game.map.scoreboard.open = false"><i class="em em-x" aria-role="presentation" aria-label="CROSS MARK"></i> Close</button>
 </div>
 
 <div
