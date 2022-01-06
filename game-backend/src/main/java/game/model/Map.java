@@ -16,7 +16,7 @@ public final class Map {
 
     private List<Replay> replays;
 
-    private Map() {
+    public Map() {
         this.tiles = new String[10][10];
         this.replays = new ArrayList<>();
     }

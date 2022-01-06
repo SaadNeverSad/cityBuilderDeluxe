@@ -36,7 +36,8 @@ public class TestMarshalling {
 	}
 
 	@Test
-	void testListFoo() { // throws JsonProcessingException {
+	void testListFoo() {
+// throws JsonProcessingException {
 //		final List<Foo> scores = List.of(
 //			new Foo(1000, "foo", "map1"),
 //			new Foo(2000, "bar", "map2")

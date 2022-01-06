@@ -45,7 +45,7 @@ public class MapResource {
     @Path("availableMaps")
     @Produces(MediaType.APPLICATION_JSON)
     public List<String> getAvailableMaps() {
-        return this.maps.stream().map(m -> m.getName()).collect(Collectors.toList());
+        return this.maps.stream().map(m -> m.getName()).sorted().collect(Collectors.toList());
     }
 
     /**
@@ -103,7 +103,6 @@ public class MapResource {
         final Map newMap = Map.generateRandomMap();
         this.maps.add(newMap);
         saveMap(newMap);
-
         return newMap;
     }
 
