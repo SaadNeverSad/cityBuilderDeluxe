@@ -5,6 +5,7 @@ import { GameComponent } from './component/game/game.component';
 import { ReplayComponent } from './component/replay/replay.component';
 import { ViewComponent } from './component/view/view.component';
 
+
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'game', component: GameComponent },

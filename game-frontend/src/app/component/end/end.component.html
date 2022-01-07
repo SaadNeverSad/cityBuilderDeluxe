@@ -4,11 +4,10 @@
 >
   <h1>Game ended</h1>
   <p class="end-desc">
-    <em> {{ gameService.game.ended }}</em>
+    <em style="color: green;"> {{ gameService.game.ended }}</em>
   </p>
 
-  <p>You did great! Your final score is {{ gameService.game.score }}</p>
-
+  <p>You did great {{ gameService.player.name }} ! Your final score is {{ gameService.game.score }} on the map {{ gameService.game.map.name }}</p>
   <button (click)="returnToMenu()">Save game and return to menu</button>
 </div>
 

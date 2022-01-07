@@ -20,6 +20,20 @@ import { ReplayComponent } from './component/replay/replay.component';
 import { ViewComponent } from './component/view/view.component';
 import { ReplayCommandsComponent } from './component/replay-commands/replay-commands.component';
 
+
+
+
+
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
+
 @NgModule({
   declarations: [
     ReplayComponent,
@@ -34,8 +48,19 @@ import { ReplayCommandsComponent } from './component/replay-commands/replay-comm
     EndComponent,
     ViewComponent,
     ReplayCommandsComponent,
+
+
   ],
   imports: [
+   
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    FormsModule,
+    MatSnackBarModule,
+
     FormsModule,
     InteractoModule,
     BrowserModule,

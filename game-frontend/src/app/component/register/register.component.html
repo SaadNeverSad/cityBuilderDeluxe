@@ -1,23 +1,52 @@
-<body>  
-  <h1>City Builder Classic Deluxe Pro Edition 2022 <br> Ultimate Bundle Release</h1>
 
-  <div class="register">
-    <form>
-      <input
-        [(ngModel)]="gameService.player.name"
-        name="playerName"
-        placeholder="Player Name"
-        type="text"
-      />
-      <label for="maps"></label>
-      <select [(ngModel)]="gameService.game.map.name" id="maps" name="maps">
-        <option name="rand" value="rand" selected="selected">
-          Generate Random Map
-        </option>
-        <option *ngFor="let map of maps" [value]="map">{{ map }}</option>
-      </select>
-      <button (click)="showReplays()">Show replays</button>
-      <button (click)="play()">Play</button>
-    </form>
-  </div>
+<body>
+  <h1>City Builder Classic Deluxe Pro Edition 2022 <br> Ultimate Bundle Release
+  <br> <h2> Esteban GRESSARD - Saad AIT CHIKH</h2>
+  </h1>
+
+<div class="center-content">
+  <mat-card class="example-card">
+    <mat-card-content>
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Play">
+          <div class="register">
+              <form>
+                <input
+                  [(ngModel)]="gameService.player.name"
+                  name="playerName"
+                  placeholder="Player Name"
+                  type="text"
+                />
+                <label for="maps"></label>
+                <select [(ngModel)]="gameService.game.map.name" id="maps" name="maps">
+                  <option name="rand" value="rand" selected="selected">
+                    Generate Random Map
+                  </option>
+                  <option *ngFor="let map of maps" [value]="map">{{ map }}</option>
+                </select>
+                <button (click)="play()">Play</button>
+              </form>
+            </div>
+        </mat-tab>
+        <mat-tab label="Replays">
+          <div class="register">
+              <form class="form">
+                <label for="maps"></label>
+                <div class="wrapper" >
+                  <select [(ngModel)]="gameService.game.map.name" id="maps" name="maps">
+                      <option value="" disabled selected hidden>Please Choose...</option>
+                      <option *ngFor="let map of maps" [value]="map">{{ map }}</option>
+                    </select>
+                </div>
+                
+                <button (click)="showReplays()">Show replays</button>
+              </form>
+            </div>
+        </mat-tab>
+      </mat-tab-group>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>
 </body>

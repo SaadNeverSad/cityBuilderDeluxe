@@ -1,3 +1,42 @@
+
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #4a690d !important;
+  height: 5px;
+  width: 50%;
+  
+}
+
+
+
+.example-card {
+  max-width: 400px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+.center-content {
+    
+    text-align: -webkit-center;
+}
+
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  background: #cd853f;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  
+  }
+  
+ 
+  ::ng-deep .mat-form-field-underline {
+      display: none;
+    }
+
+
+
 body {
   margin: 0;
   padding: 0;
@@ -11,29 +50,30 @@ body {
   display: grid;  
   
 }
-.register {
+
+.example-card {
   background: #f8f4e5;
   padding: 50px 100px;
   border: 2px solid black;
   box-shadow: 5px 5px 1px #cd853f, 5px 5px 1px 2px black;
-  position: absolute;
-  left: 50%;
-top: 50%;
-transform: translate(-50%, -50%);
+  margin-bottom: 100px;
 }
 
+.form{
+  margin: 40px;
+}
 input {
   display: block;
-  width: 100%;
+  width: 90%;
   font-size: 14pt;
   line-height: 28pt;
   /* font-family: "Fjalla One"; */
-  font-family: cursive;
+  font-family:'Times New Roman', Times, serif;
   margin-bottom: 28pt;
   border: none;
-  border-bottom: 5px solid black;
+  border-bottom: 2px solid #4a690d;
   background: #f8f4e5;
-  min-width: 250px;
+  min-width: 200px;
   padding-left: 5px;
   outline: none;
   color: black;
@@ -54,9 +94,10 @@ button {
   outline: none;
   border: 1px solid black;
   box-shadow: 3px 3px 1px #4a690d, 3px 3px 1px 1px black;
-  font-family: cursive;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
 }
+
 button:hover {
   background: black;
   color: white;
@@ -70,7 +111,7 @@ button:hover {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  border-bottom: 5px solid #95a4ff;
+  
   -webkit-text-fill-color: #2a293e;
   -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
   transition: background-color 5000s ease-in-out 0s;
@@ -80,22 +121,21 @@ select {
   border: none;
   padding: 0 1em 0 0;
   margin: 0;
-  width: 100%;
+  width: 90%;
   font-family: inherit;
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
   display: block;
-  width: 100%;
   font-size: 14pt;
   line-height: 28pt;
   /* font-family: "Fjalla One"; */
-  font-family: cursive;
+  font-family: 'Times New Roman', Times, serif;
   margin-bottom: 28pt;
   border: none;
-  border-bottom: 5px solid black;
+  border-bottom: 2px solid #4a690d;
   background: #f8f4e5;
-  min-width: 250px;
+  min-width: 200px;
   padding-left: 5px;
   outline: none;
   color: black;
@@ -107,4 +147,13 @@ h1{
   font-family: cursive;
   text-align: center;
   color: #864b10;
+
 }
+
+.wrapper{
+  margin-top: 62px;
+  height: 38px;
+  }
+  h2{
+    font-family: 'Times New Roman', Times, serif;
+  }

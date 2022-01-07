@@ -1,5 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import Map from 'src/app/model/map';
 import { GameService } from 'src/app/service/game.service';
@@ -13,6 +14,7 @@ export class RegisterComponent implements OnInit {
   maps: Array<String> = [];
 
   constructor(
+    private snackBar:MatSnackBar,
     httpClient: HttpClient,
     public gameService: GameService,
     private router: Router
@@ -34,5 +36,9 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+
+  }
+
 }
