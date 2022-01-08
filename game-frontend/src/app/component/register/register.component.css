@@ -159,14 +159,7 @@ h1{
     margin: 10px;
   }
 
-  @font-face {
-    font-family: hiro;
-    src: url("../HIROMISAKE.ttf");
-  }
-  @font-face {
-    font-family: game;
-    src: url("../Game Over.otf");
-  }
+
   @font-face {
     font-family: esteban;
     src: url("../DirtyBrush.ttf");
