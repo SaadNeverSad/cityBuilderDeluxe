@@ -1,9 +1,23 @@
+@font-face {
+  font-family: hiro;
+  src: url("../HIROMISAKE.ttf");
+}
+@font-face {
+  font-family: game;
+  src: url("../Game Over.otf");
+}
+@font-face {
+  font-family: esteban;
+  src: url("../DirtyBrush.ttf");
+}
 h1{
-    font-family: cursive;
+    font-family: esteban;
+    font-weight: 300;
+    font-size: 40px;
     text-align: center;
 }
 #replays {
-    font-family: cursive;
+    
     border-collapse: collapse;
     width: 100%;
   }
@@ -11,7 +25,7 @@ h1{
   p,#replays td, #replays th {
     border: 1px solid #ddd;
     padding: 10px;
-    font-family: cursive;
+    font-family: sans-serif;
     text-align: center;
   }
   
@@ -25,6 +39,7 @@ h1{
     text-align: center;
     background-color:#CD853F;
     color: white;  
+    font-family: cursive;
   }
   table{
     /* haut | droit | bas | gauche */

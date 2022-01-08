@@ -1,6 +1,6 @@
 .progress {
   pointer-events: none;
-  font-family: 'Times New Roman', Times, serif !important;
+  font-family: sans-serif;
   font-weight: bold;
 }
 .div{

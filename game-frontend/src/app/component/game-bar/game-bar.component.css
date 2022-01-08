@@ -1,7 +1,7 @@
-*{
-  font-family: 'Times New Roman', Times, serif !important;
+@font-face {
+  font-family: esteban;
+  src: url("../DirtyBrush.ttf");
 }
-
 .game-bar {
   width: 100%;
   display: flex;
@@ -23,7 +23,7 @@ button {
   outline: none;
   border: 1px solid black;
   box-shadow: 3px 3px 1px #4a690d	, 3px 3px 1px 1px black;
-  font-family: cursive;
+  font-family: sans-serif;
   font-weight: bold;
 }
 button:hover {
@@ -32,13 +32,13 @@ button:hover {
   border: 1px solid black;
 }
 .gameName{
-  font-family: cursive;
+  font-family: sans-serif;
   /* haut | droit | bas | gauche */
   margin: 0 0 0 8px;
 }
 
 .mapName{ 
-  font-family: cursive;
+  font-family: esteban;
   display: inline-block;
-  margin: 0 10px 0 0;
+  margin: 10px;
 }

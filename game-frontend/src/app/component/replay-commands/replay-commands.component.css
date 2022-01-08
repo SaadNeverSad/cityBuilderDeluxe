@@ -1,7 +1,17 @@
 button {
   margin: 0 5px;
+  font-family: sans-serif;
 }
 h3{
-  font-family: cursive;
-  text-align: left;
+  font-family: esteban;
+  
+  text-align: center;
+  font-size: 30px;
+  
+}
+
+
+@font-face {
+  font-family: esteban;
+  src: url("../DirtyBrush.ttf");
 }

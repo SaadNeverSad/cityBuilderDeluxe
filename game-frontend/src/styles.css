@@ -1,6 +1,7 @@
+
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: sans-serif;
 }
 
 .popup {
@@ -15,8 +16,8 @@ body {
   background: #fff;
   border-radius: 5px;
   padding: 10px 40px;
-  border: 1px solid #ccc;
-  font-family: cursive; /*QUAND JE LAISSE LE BUTTON SORT DE LA DIV*/
+  border: 2px solid #ffa580;
+  font-family: sans-serif; /*QUAND JE LAISSE LE BUTTON SORT DE LA DIV*/
 }
 
 .popup h1 {
@@ -64,7 +65,7 @@ button {
   transition: 0.2s all ease-in-out;
   outline: none;
   border: 1px solid black;
-  font-family: cursive;
+  font-family: sans-serif;
   font-weight: bold;
 }
 button:hover {
@@ -74,4 +75,4 @@ button:hover {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: sans-serif; }

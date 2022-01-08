@@ -11,7 +11,7 @@
 
 .example-card {
   max-width: 400px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: sans-serif;
 }
 
 
@@ -26,7 +26,7 @@
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: sans-serif;
   
   }
   
@@ -53,7 +53,7 @@ body {
 
 .example-card {
   background: #f8f4e5;
-  padding: 50px 100px;
+  padding: 50px 50px;
   border: 2px solid black;
   box-shadow: 5px 5px 1px #cd853f, 5px 5px 1px 2px black;
   margin-bottom: 100px;
@@ -67,8 +67,7 @@ input {
   width: 90%;
   font-size: 14pt;
   line-height: 28pt;
-  /* font-family: "Fjalla One"; */
-  font-family:'Times New Roman', Times, serif;
+  font-family: sans-serif; 
   margin-bottom: 28pt;
   border: none;
   border-bottom: 2px solid #4a690d;
@@ -94,7 +93,7 @@ button {
   outline: none;
   border: 1px solid black;
   box-shadow: 3px 3px 1px #4a690d, 3px 3px 1px 1px black;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: sans-serif; 
   font-weight: bold;
 }
 
@@ -122,15 +121,13 @@ select {
   padding: 0 1em 0 0;
   margin: 0;
   width: 90%;
-  font-family: inherit;
+  font-family: sans-serif;
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
   display: block;
   font-size: 14pt;
   line-height: 28pt;
-  /* font-family: "Fjalla One"; */
-  font-family: 'Times New Roman', Times, serif;
   margin-bottom: 28pt;
   border: none;
   border-bottom: 2px solid #4a690d;
@@ -144,16 +141,33 @@ select:required:invalid {
   color: gray;
 }
 h1{
-  font-family: cursive;
+  font-family: esteban;
+  font-size: 40px; 
   text-align: center;
   color: #864b10;
-
+  margin: 10px;
 }
 
 .wrapper{
   margin-top: 62px;
   height: 38px;
   }
+ 
+
   h2{
-    font-family: 'Times New Roman', Times, serif;
+    font-family: cursive; 
+    margin: 10px;
+  }
+
+  @font-face {
+    font-family: hiro;
+    src: url("../HIROMISAKE.ttf");
+  }
+  @font-face {
+    font-family: game;
+    src: url("../Game Over.otf");
+  }
+  @font-face {
+    font-family: esteban;
+    src: url("../DirtyBrush.ttf");
   }
