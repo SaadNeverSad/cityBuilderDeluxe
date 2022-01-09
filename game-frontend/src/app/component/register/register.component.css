@@ -12,11 +12,13 @@
 .example-card {
   max-width: 400px;
   font-family: sans-serif;
+  
 }
 
 
 .center-content {
-    
+  
+  text-align:-moz-center;
     text-align: -webkit-center;
 }
 
@@ -40,6 +42,11 @@
 body {
   margin: 0;
   padding: 0;
+  display: -webkit-flex;
+display: -moz-flex;
+display: flex;
+
+justify-content: center;
 }
 
 body {
