@@ -113,7 +113,16 @@ export class MapComponent implements OnInit {
       .bind();
   }
 
+  /**
+   * Sets the hovered block.
+   * @param x the x coordinate
+   * @param y the y coordiante
+   */
   setHovered(x: number, y: number) {
+    if (this.gameService.isReplay) {
+      return;
+    }
+
     let tile = this.gameService.game.map.tiles[x][y];
     if (!tile.selectable) {
       return;
@@ -122,8 +131,18 @@ export class MapComponent implements OnInit {
     this.hovered = [x, y];
   }
 
+  /**
+   * Unsets the hovered block.
+   */
   removeHovered() {
     this.hovered = null;
+  }
+
+  isSelectable(x: number, y: number) {
+    return (
+      this.gameService.game.map.tiles[x][y].selectable &&
+      !this.gameService.isReplay
+    );
   }
 
   /**

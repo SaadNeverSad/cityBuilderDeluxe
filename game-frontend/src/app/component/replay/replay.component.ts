@@ -26,6 +26,7 @@ export class ReplayComponent implements OnInit {
       router.navigateByUrl('/register');
       return;
     }
+    this.gameService.game.map.name = this.map;
 
     httpClient
       .get<Array<Replay>>('api/map/' + gameService.game.map.name + '/replays')

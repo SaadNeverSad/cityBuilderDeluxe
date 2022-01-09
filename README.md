@@ -9,5 +9,7 @@
 ## Project structure
 
 `game-backend/`: Backend written with Java and Jersey.  
-`game-frontend`: frontend writtent with TypeScript and Angular  
-`game-doc`: UML diagrams of the frontend and the backend, REST API definition
+`game-frontend`: frontend writtent with TypeScript and Angular.  
+`game-doc`: UML diagrams of the frontend and the backend, REST API definition.
+
+The frontend and backend directories features another README to describe the project structure.

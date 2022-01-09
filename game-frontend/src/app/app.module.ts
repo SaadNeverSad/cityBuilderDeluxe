@@ -20,19 +20,13 @@ import { ReplayComponent } from './component/replay/replay.component';
 import { ViewComponent } from './component/view/view.component';
 import { ReplayCommandsComponent } from './component/replay-commands/replay-commands.component';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
-
-
-
-import {MatCardModule} from '@angular/material/card';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -48,11 +42,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     EndComponent,
     ViewComponent,
     ReplayCommandsComponent,
-
-
   ],
   imports: [
-   
     MatCardModule,
     MatTabsModule,
     MatInputModule,

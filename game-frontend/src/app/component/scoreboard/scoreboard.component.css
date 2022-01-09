@@ -1,52 +1,49 @@
-
-@font-face {
-  font-family: esteban;
-  src: url("../DirtyBrush.ttf");
-}
-
 #customers {
-    font-family:sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  #customers td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-family:sans-serif;
-    text-align: center;
-  }
-  
-  #customers tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #customers tr:hover {background-color: #ddd;}
-  
-  #customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color:#CD853F;
-    color: white;
-    font-family: cursive;
-  }
-  table{
-    /* haut | droit | bas | gauche */
-    margin: 0 0 20px 0;
-  }
-  .popup{
-    overflow-y: auto;
-    min-height:400px;
-     max-height:450px;
-  }
-
-  #close_btn {
-    font-family:sans-serif;
-    position: absolute; 
-    bottom:10px;
-    right:10px    
+  border-collapse: collapse;
+  width: 100%;
 }
 
-h1{
-  font-family: esteban;
-  font-size: 50px;
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  font-family: tofu;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #cd853f;
+  color: white;
+}
+table {
+  /* haut | droit | bas | gauche */
+  margin: 0 0 20px 0;
+}
+.popup {
+  overflow-y: auto;
+  min-height: 400px;
+  max-height: 450px;
+}
+
+#close_btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+h1 {
+  padding-top: 10px;
+  font-size: 30px;
+  font-family: tofu;
 }

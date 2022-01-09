@@ -9,9 +9,9 @@
         <img
           class="tile"
           ondragstart="return false"
-          [class.selectable]="gameService.game.map.tiles[x][y].selectable"
+          [class.selectable]="isSelectable(x, y)"
           [style.cursor]="
-            gameService.game.map.tiles[x][y].selectable
+            isSelectable(x, y)
               ? 'url(' +
                 Block.assetPath(gameService.player.selectedBlock) +
                 ') 58 100, pointer'

@@ -176,6 +176,10 @@ public class TestMapResource {
 		});
 		List<String> files = Arrays.asList(directories);
 
+		// the order shouldn't matter
+		Collections.sort(files);
+		Collections.sort(maps);
+
 		assertEquals(files, maps);
 	}
 

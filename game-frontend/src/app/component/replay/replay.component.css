@@ -1,52 +1,77 @@
+body {
+  background: url("/assets/city-builder.jpg") center center no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+}
 
-@font-face {
-  font-family: esteban;
-  src: url("../DirtyBrush.ttf");
+h1 {
+  padding-top: 30px;
+  font-family: tofu;
+  font-weight: 300;
+  font-size: 30px;
+  text-align: center;
 }
-h1{
-    font-family: esteban;
-    font-weight: 300;
-    font-size: 40px;
-    text-align: center;
+
+.container {
+  margin: auto;
+  width: 100%;
+  max-width: 960px;
+  background: #f8f4e5;
+  padding: 50px 50px;
+  border: 2px solid black;
+  box-shadow: 5px 5px 1px #cd853f, 5px 5px 1px 2px black;
 }
+
 #replays {
-    
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  p,#replays td, #replays th {
-    border: 1px solid #ddd;
-    padding: 10px;
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
-  #replays tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #replays tr:hover {background-color: #ddd;}
-  
-  #replays th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color:#CD853F;
-    color: white;  
-    font-family: cursive;
-  }
-  table{
-    /* haut | droit | bas | gauche */
-    margin: 60px 0 60px 0;
-  }
-  .align{
-    display: block;
-    margin: auto;
-    padding: auto;
-  }
+  margin: auto;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 960px;
+}
 
+p,
+#replays td,
+#replays th {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
 
-  body{
-    height: 100%;
-    background-size: cover;
-        
-  }
+#replays th {
+  font-family: tofu;
+}
+
+#replays tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#replays tr:hover {
+  background-color: #ddd;
+}
+
+#replays th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #cd853f;
+  color: white;
+}
+table {
+  /* haut | droit | bas | gauche */
+  margin: 60px 0 60px 0;
+}
+.align {
+  display: block;
+  margin: 10px auto;
+}
+
+.return {
+  margin: 50px auto 0 auto;
+}
+
+body {
+  height: 100%;
+  background-size: cover;
+}

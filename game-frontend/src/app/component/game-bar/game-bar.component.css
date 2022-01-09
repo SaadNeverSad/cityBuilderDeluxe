@@ -1,11 +1,8 @@
-@font-face {
-  font-family: esteban;
-  src: url("../DirtyBrush.ttf");
-}
 .game-bar {
+  padding-top: 10px;
   width: 100%;
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
 
 .game-bar img {
@@ -13,17 +10,16 @@
 }
 
 button {
+  margin: 0 10px;
   display: relative;
-  margin: 4px;
   line-height: 28pt;
   padding: 0 20px;
-  background: #CD853F;
-  letter-spacing: 2px;
+  background: #cd853f;
   transition: 0.2s all ease-in-out;
   outline: none;
   border: 1px solid black;
-  box-shadow: 3px 3px 1px #4a690d	, 3px 3px 1px 1px black;
-  font-family: sans-serif;
+  box-shadow: 3px 3px 1px #4a690d, 3px 3px 1px 1px black;
+  font-family: tofu;
   font-weight: bold;
 }
 button:hover {
@@ -31,14 +27,17 @@ button:hover {
   color: white;
   border: 1px solid black;
 }
-.gameName{
-  font-family: sans-serif;
-  /* haut | droit | bas | gauche */
+.gameName {
+  font-family: tofu;
   margin: 0 0 0 8px;
 }
 
-.mapName{ 
-  font-family: esteban;
+.mapName {
+  font-family: tofu;
   display: inline-block;
   margin: 10px;
+}
+
+.rank {
+  margin-right: 10px;
 }

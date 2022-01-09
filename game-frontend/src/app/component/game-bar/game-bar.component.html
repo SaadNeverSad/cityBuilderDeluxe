@@ -7,15 +7,13 @@
     <button ioRedo>Redo</button>
   </div>
 
-
-    
-  <div>
-    <h1 class="mapName">Map : {{gameService.game.map.name}} <br>Player : {{gameService.player.name}}</h1>
+  <div class="rank">
+    <h1 class="mapName">
+      Map : {{ gameService.game.map.name }} <br />Player :
+      {{ gameService.player.name }}
+    </h1>
     <button (click)="gameService.game.map.scoreboard.open = true">
       <img src="/assets/ranking.svg" alt="" srcset="" />
     </button>
   </div>
-  
 </div>
-
-

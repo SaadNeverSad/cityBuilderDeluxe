@@ -1,33 +1,24 @@
-
-@font-face {
-  font-family: esteban;
-  src: url("../DirtyBrush.ttf");
-}
-
 .end-desc {
   font-style: italic;
   margin-top: -10px;
   text-align: center;
 }
-p{
-  font-family: sans-serif; 
+p {
   font-size: larger;
-  text-align: center; 
+  text-align: center;
   font-weight: 100;
 }
 
-
 button {
-  margin: 40px;
-  font-family: sans-serif; 
-  
+  margin-top: 55px;
   font-size: larger;
 }
-.popup{
-  height : 200px;
+.popup {
+  height: 250px;
 }
 
-h1{
-  font-family: esteban;
-  font-size: 50px;
+h1 {
+  padding-top: 10px;
+  font-family: tofu;
+  font-size: 30px;
 }

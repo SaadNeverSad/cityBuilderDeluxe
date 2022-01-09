@@ -1,12 +1,12 @@
 .progress {
   pointer-events: none;
-  font-family: sans-serif;
   font-weight: bold;
 }
-.div{
+.div {
   left: 20px;
 }
-.score{
+.score {
   /* haut | droit | bas | gauche */
+  font-family: tofu;
   margin: 2px 0 0 50px;
 }
