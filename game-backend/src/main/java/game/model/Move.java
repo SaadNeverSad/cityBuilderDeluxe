@@ -35,26 +35,35 @@ public class Move {
         return blockY;
     }
 
+    // auto generated
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        Move other = (Move) obj;
+        }
+        final Move other = (Move) obj;
         if (block == null) {
-            if (other.block != null)
+            if (other.block != null) {
                 return false;
-        } else if (!block.equals(other.block))
+            }
+        } else if (!block.equals(other.block)) {
             return false;
-        if (blockX != other.blockX)
+        }
+        if (blockX != other.blockX) {
             return false;
-        if (blockY != other.blockY)
+        }
+        if (blockY != other.blockY) {
             return false;
-        if (scoreAdded != other.scoreAdded)
+        }
+        if (scoreAdded != other.scoreAdded) {
             return false;
+        }
         return true;
     }
 }

@@ -29,27 +29,36 @@ public class Replay {
         return Collections.unmodifiableList(this.moves);
     }
 
+    // auto generated
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        Replay other = (Replay) obj;
+        }
+        final Replay other = (Replay) obj;
         if (moves == null) {
-            if (other.moves != null)
+            if (other.moves != null) {
                 return false;
-        } else if (!moves.equals(other.moves))
+            }
+        } else if (!moves.equals(other.moves)) {
             return false;
+        }
         if (playerName == null) {
-            if (other.playerName != null)
+            if (other.playerName != null) {
                 return false;
-        } else if (!playerName.equals(other.playerName))
+            }
+        } else if (!playerName.equals(other.playerName)) {
             return false;
-        if (score != other.score)
+        }
+        if (score != other.score) {
             return false;
+        }
         return true;
     }
 }

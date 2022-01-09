@@ -79,27 +79,36 @@ public final class Map {
         return map;
     }
 
+    // auto generated
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        Map other = (Map) obj;
+        }
+        final Map other = (Map) obj;
         if (name == null) {
-            if (other.name != null)
+            if (other.name != null) {
                 return false;
-        } else if (!name.equals(other.name))
+            }
+        } else if (!name.equals(other.name)) {
             return false;
+        }
         if (replays == null) {
-            if (other.replays != null)
+            if (other.replays != null) {
                 return false;
-        } else if (!replays.equals(other.replays))
+            }
+        } else if (!replays.equals(other.replays)) {
             return false;
-        if (!Arrays.deepEquals(tiles, other.tiles))
+        }
+        if (!Arrays.deepEquals(tiles, other.tiles)) {
             return false;
+        }
         return true;
     }
 }

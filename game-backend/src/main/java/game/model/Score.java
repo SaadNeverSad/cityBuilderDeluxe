@@ -21,22 +21,29 @@ public class Score {
         return this.playerName;
     }
 
+    // auto generated
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        Score other = (Score) obj;
+        }
+        final Score other = (Score) obj;
         if (playerName == null) {
-            if (other.playerName != null)
+            if (other.playerName != null) {
                 return false;
-        } else if (!playerName.equals(other.playerName))
+            }
+        } else if (!playerName.equals(other.playerName)) {
             return false;
-        if (score != other.score)
+        }
+        if (score != other.score) {
             return false;
+        }
         return true;
     }
 }
