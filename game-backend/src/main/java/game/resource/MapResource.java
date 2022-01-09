@@ -8,6 +8,7 @@ import game.model.Map;
 import game.model.Replay;
 import game.model.Score;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,6 +17,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +32,14 @@ import java.util.stream.Stream;
 @Path("map")
 public class MapResource {
 
+    @Context
+    private MapConfig mapConfig;
+
     private final List<Map> maps;
 
-    public MapResource() {
+    @Inject
+    public MapResource(final MapConfig mapConfig) {
+        this.mapConfig = mapConfig;
         this.maps = loadMaps();
     }
 
@@ -53,18 +60,22 @@ public class MapResource {
      * 
      * @param name The name of the map
      * @return The map choosen.
+     * @throws UnknownMapException
      */
     @GET
     @Path("{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Map getMap(@PathParam("name") final String name) {
-        return this.maps.stream().filter(m -> m.getName().equals(name)).findFirst().orElseThrow();
+    public Map getMap(@PathParam("name") final String name) throws UnknownMapException {
+        return this.maps.stream().filter(m -> m.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new UnknownMapException(name));
     }
 
     /**
      * Deletes a specific map by its name.
      * 
      * @param name The name of the map
+     * @throws UnknownMapException
      */
     @DELETE
     @Path("{name}")
@@ -81,12 +92,14 @@ public class MapResource {
      * 
      * @param name the name of the map
      * @return the ordered list of replays
+     * @throws UnknownMapException
      */
     @GET
     @Path("{name}/replays")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Replay> getReplays(@PathParam("name") final String name) {
-        return this.maps.stream().filter(m -> m.getName().equals(name)).findFirst().orElseThrow().getReplays().stream()
+    public List<Replay> getReplays(@PathParam("name") final String name) throws UnknownMapException {
+        return this.maps.stream().filter(m -> m.getName().equals(name)).findFirst()
+                .orElseThrow(() -> new UnknownMapException(name)).getReplays().stream()
                 .sorted(Comparator.comparing(Replay::getScore).reversed())
                 .collect(Collectors.toList());
     }
@@ -112,13 +125,13 @@ public class MapResource {
      * @return the list of maps.
      */
     private List<Map> loadMaps() {
-        final File mapsDir = new File("maps");
+        final File mapsDir = new File(mapConfig.getMapsFolder());
         final ObjectMapper mapper = new ObjectMapper().disable(MapperFeature.USE_ANNOTATIONS);
 
         try {
-            Files.createDirectories(Paths.get("maps"));
+            Files.createDirectories(Paths.get(mapConfig.getMapsFolder()));
         } catch (IOException e) {
-            System.out.println("Could not create the maps directory, check your permissions: " + e);
+            System.err.println("Could not create the maps directory, check your permissions: " + e);
         }
 
         return Stream.of(mapsDir.listFiles()).map(mapDir -> {
@@ -140,7 +153,7 @@ public class MapResource {
      */
     private void saveMap(final Map map) {
         final ObjectMapper mapper = new ObjectMapper().disable(MapperFeature.USE_ANNOTATIONS);
-        final String mapDirectory = "maps/" + map.getName();
+        final String mapDirectory = mapConfig.getMapsFolder() + map.getName();
 
         try {
             // create the directory if it doesn't exist

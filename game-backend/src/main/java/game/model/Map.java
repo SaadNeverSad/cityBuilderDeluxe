@@ -10,6 +10,9 @@ import java.util.stream.IntStream;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * A map and its replays.
+ */
 public final class Map {
     private String name;
     private String tiles[][];
@@ -26,7 +29,8 @@ public final class Map {
     }
 
     private static String randomNames[] = { "good", "map", "bad", "grass", "water", "tree", "java", "angular", "sunny",
-            "rainy", "cloudy", "sad", "pain", "help" };
+            "rainy", "cloudy", "sad", "pain", "help", "shiny", "blue", "red", "green", "warrior", "spellcaster", "rest",
+            "hungry" };
 
     public void addReplay(final Replay replay) {
         final Optional<Replay> previousScore = this.replays.stream()
@@ -50,6 +54,11 @@ public final class Map {
         return Collections.unmodifiableList(Arrays.asList(this.tiles));
     }
 
+    /**
+     * Generates a random map.
+     * 
+     * @return A random generated map
+     */
     public static Map generateRandomMap() {
         final Map map = new Map();
         final Random r = new Random();
@@ -68,5 +77,29 @@ public final class Map {
                 });
 
         return map;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Map other = (Map) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (replays == null) {
+            if (other.replays != null)
+                return false;
+        } else if (!replays.equals(other.replays))
+            return false;
+        if (!Arrays.deepEquals(tiles, other.tiles))
+            return false;
+        return true;
     }
 }

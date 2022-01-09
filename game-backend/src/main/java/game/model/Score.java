@@ -20,4 +20,23 @@ public class Score {
     public String getPlayerName() {
         return this.playerName;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Score other = (Score) obj;
+        if (playerName == null) {
+            if (other.playerName != null)
+                return false;
+        } else if (!playerName.equals(other.playerName))
+            return false;
+        if (score != other.score)
+            return false;
+        return true;
+    }
 }

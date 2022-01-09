@@ -1,12 +1,15 @@
 package game;
 
 import java.net.URI;
-//import org.glassfish.hk2.utilities.binding.AbstractBinder;
+
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import game.resource.MapConfig;
 import game.resource.MapResource;
+import game.resource.ProductionMapConfig;
 
 public final class Main {
 	private Main() {
@@ -21,9 +24,15 @@ public final class Main {
 	 * @param httpAddress
 	 */
 	public static void startServer(final String httpAddress) {
-		final ResourceConfig rc = new ResourceConfig() // GameResource.class)
+		final ResourceConfig rc = new ResourceConfig()
 				.register(JacksonFeature.class)
-				.register(MapResource.class);
+				.register(MapResource.class)
+				.register(new AbstractBinder() {
+					@Override
+					protected void configure() {
+						bind(ProductionMapConfig.class).to(MapConfig.class);
+					}
+				});
 
 		GrizzlyHttpServerFactory.createHttpServer(URI.create(httpAddress), rc);
 	}
