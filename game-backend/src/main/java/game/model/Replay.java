@@ -61,4 +61,15 @@ public class Replay {
         }
         return true;
     }
+
+    // auto generated
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((moves == null) ? 0 : moves.hashCode());
+        result = prime * result + ((playerName == null) ? 0 : playerName.hashCode());
+        result = prime * result + score;
+        return result;
+    }
 }

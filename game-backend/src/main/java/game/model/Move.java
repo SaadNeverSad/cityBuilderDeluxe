@@ -66,4 +66,16 @@ public class Move {
         }
         return true;
     }
+
+    // auto generated
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((block == null) ? 0 : block.hashCode());
+        result = prime * result + blockX;
+        result = prime * result + blockY;
+        result = prime * result + scoreAdded;
+        return result;
+    }
 }
