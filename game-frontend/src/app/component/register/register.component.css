@@ -10,7 +10,7 @@
 }
 
 .center-content {
-  text-align: -webkit-center;
+  text-align: center;
 }
 
 ::ng-deep .mat-tab-label {
