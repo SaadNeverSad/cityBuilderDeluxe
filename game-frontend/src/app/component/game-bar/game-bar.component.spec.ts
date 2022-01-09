@@ -8,9 +8,8 @@ describe('GameBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameBarComponent ]
-    })
-    .compileComponents();
+      declarations: [GameBarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,11 @@ describe('GameBarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should end correctly the game', () => {
+    component.gameService.isReplay = true;
+    component.endGame();
+    expect(component.gameService.isReplay).toBeFalse();
   });
 });
